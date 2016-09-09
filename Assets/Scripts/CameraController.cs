@@ -3,6 +3,10 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
+    /*
+     * This class does nothing at the most but will need to be used to control the camera. 
+     */ 
+
     //public GameObject player;
 
     private Vector3 offset;
