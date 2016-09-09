@@ -4,32 +4,60 @@ using System.Collections;
 
 public class Control : MonoBehaviour {
 
-    public float speed = 2;
-    // SpriteRenderer rend;
-   //  public Sprite LeftBird;
+    public float speed;
+    private Animator anim;
 
-	// Use this for initialization
-	void Start () {
-	   // rend = GetComponent<SpriteRenderer>();
-        // LeftBird = (Sprite) Resources.Load("LeftBird", typeof(Sprite));
+    // Use this for initialization
+    void Start () {
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
 
-        float moveX = Input.GetAxis("Horizontal");
-        // Debug.Log(moveX);
-        GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, moveX * speed);
+        /*
+         * Reading input for movement. Moving the sprite as well as animating it. The constant being multiplied in the 
+         * translate function determines the speed will need to be adjust as the game develops. The second argument in the 
+         * CrossFade function is the delay in the animation. Zero seems to work fine. 
+         */
 
+        const float movementSpeed = 4;
 
-        float moveY = Input.GetAxis("Vertical");
+        if (Input.GetKey(KeyCode.LeftArrow)){
 
-        GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.y, moveY * speed);
+            transform.Translate(Vector2.left * Time.deltaTime * movementSpeed);
+            anim.CrossFade("RunLeft", 0);
 
-        // if (Input.GetKeyDown(KeyCode.Space)){
-           // Debug.Log("HAHAH");
-          //  rend.sprite = LeftBird;
-        //}
+        } else if (Input.GetKey(KeyCode.RightArrow)){
 
+            transform.Translate(Vector2.right * Time.deltaTime * movementSpeed);
+            anim.CrossFade("RunRight", 0);
+
+        } else if (Input.GetKey(KeyCode.UpArrow)) {
+
+            transform.Translate(Vector2.up * Time.deltaTime * movementSpeed);
+            anim.CrossFade("RunForward", 0);
+
+        } else if (Input.GetKey(KeyCode.DownArrow)) {
+
+            transform.Translate(Vector2.down * Time.deltaTime * movementSpeed);
+            anim.CrossFade("RunBack", 0);
+
+        }
+
+        /*
+         * Reading input for attack and animating it. 
+         */
+        if (Input.GetKey(KeyCode.Z)) {
+            if(anim.GetCurrentAnimatorStateInfo(0).IsName("RunLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft")) {
+                anim.CrossFade("AttackLeft", 0);
+            } else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunRight") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight")) {
+                anim.CrossFade("AttackRight", 0);
+            } else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunForward") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward"))  {
+                anim.CrossFade("AttackForward", 0);
+            } else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunBack") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack")) {
+                anim.CrossFade("AttackBack", 0);
+            }
+        }
     }
 }
