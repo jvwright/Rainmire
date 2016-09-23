@@ -6,10 +6,12 @@ public class Control : MonoBehaviour {
 
     public float speed;
     private Animator anim;
+    private Rigidbody2D rb;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -18,31 +20,34 @@ public class Control : MonoBehaviour {
         /*
          * Reading input for movement. Moving the sprite as well as animating it. The constant being multiplied in the 
          * translate function determines the speed will need to be adjust as the game develops. The second argument in the 
-         * CrossFade function is the delay in the animation. Zero seems to work fine. 
+         * CrossFade function is the delay in the animation. Zero seems to work fine. With the current method of 
+         * moving the character, I'm not sure how to achieve diagonal movement. 
          */
 
-        const float movementSpeed = 4;
+        const float movementSpeed = 10;
+
+        // if (Input.GetKey(KeyCode.LeftArrow)) { transform.Translate(Vector2.left * Time.deltaTime * movementSpeed); }
+        // if (Input.GetKey(KeyCode.RightArrow)) { transform.Translate(Vector2.right * Time.deltaTime * movementSpeed); }
+        // if (Input.GetKey(KeyCode.UpArrow)) { transform.Translate(Vector2.up * Time.deltaTime * movementSpeed); }
+        // if (Input.GetKey(KeyCode.DownArrow)) { transform.Translate(Vector2.down * Time.deltaTime * movementSpeed); }
+
+        if (Input.GetKey(KeyCode.LeftArrow)) { rb.velocity = Vector2.left * movementSpeed;}
+        if (Input.GetKey(KeyCode.RightArrow)) {rb.velocity = Vector2.right * movementSpeed; }
+        if (Input.GetKey(KeyCode.UpArrow)) { rb.velocity = Vector2.up * movementSpeed; }
+        if (Input.GetKey(KeyCode.DownArrow)) { rb.velocity = Vector2.down * movementSpeed; }
 
         if (Input.GetKey(KeyCode.LeftArrow)){
-
-            transform.Translate(Vector2.left * Time.deltaTime * movementSpeed);
+            // rb.velocity = Vector2.left * movementSpeed;
             anim.CrossFade("RunLeft", 0);
-
         } else if (Input.GetKey(KeyCode.RightArrow)){
-
-            transform.Translate(Vector2.right * Time.deltaTime * movementSpeed);
+            // rb.velocity = Vector2.right * movementSpeed;
             anim.CrossFade("RunRight", 0);
-
         } else if (Input.GetKey(KeyCode.UpArrow)) {
-
-            transform.Translate(Vector2.up * Time.deltaTime * movementSpeed);
+            // rb.velocity = Vector2.up * movementSpeed;
             anim.CrossFade("RunForward", 0);
-
         } else if (Input.GetKey(KeyCode.DownArrow)) {
-
-            transform.Translate(Vector2.down * Time.deltaTime * movementSpeed);
+            // rb.velocity = Vector2.down * movementSpeed;
             anim.CrossFade("RunBack", 0);
-
         }
 
         /*
