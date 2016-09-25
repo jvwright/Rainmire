@@ -5,19 +5,26 @@ public class PlayerAttack : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (Input.GetKey(KeyCode.Z))
         {
-            Debug.Log("test");
-           // Destroy(col.gameObject);
+            enabled = true;
+        }
+        if (enabled)
+        {
+            if (col.gameObject.tag == "Enemy")
+            {
+                //Debug.Log("test");
+                Destroy(col.gameObject);
+            }
         }
     }
 }
