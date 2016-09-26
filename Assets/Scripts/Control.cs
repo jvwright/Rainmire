@@ -7,6 +7,11 @@ public class Control : MonoBehaviour {
     public float speed;
     private Animator anim;
     private Rigidbody2D rb;
+    public PlayerAttack attackL;
+    public PlayerAttack attackR;
+    public PlayerAttack attackU;
+    public PlayerAttack attackD;
+
 
     // Use this for initialization
     void Start () {
@@ -53,17 +58,48 @@ public class Control : MonoBehaviour {
         /*
          * Reading input for attack and animating it. 
          */
-        if (Input.GetKey(KeyCode.Z)) {
-            if(anim.GetCurrentAnimatorStateInfo(0).IsName("RunLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft")) {
+        if (Input.GetKey(KeyCode.Z))
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft"))
+            {
+                attackL.setEnabled(true);
                 anim.CrossFade("AttackLeft", 0);
-            } else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunRight") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight")) {
+            }
+            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunRight") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight"))
+            {
+                attackR.setEnabled(true);
                 anim.CrossFade("AttackRight", 0);
-            } else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunForward") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward"))  {
+            }
+            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunForward") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward"))
+            {
+                attackU.setEnabled(true);
                 anim.CrossFade("AttackForward", 0);
-            } else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunBack") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack")) {
+            }
+            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunBack") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack"))
+            {
+                attackD.setEnabled(true);
                 anim.CrossFade("AttackBack", 0);
             }
         }
     }
-        
+
+    void setEnabled(string dir)
+    {
+        if (dir == "L")
+        {
+            attackD.setEnabled(false);
+        }
+        if (dir == "R")
+        {
+            attackR.setEnabled(false);
+        }
+        if (dir == "U")
+        {
+            attackU.setEnabled(false);
+        }
+        if (dir == "D")
+        {
+            attackD.setEnabled(false);
+        }
+    }
 }

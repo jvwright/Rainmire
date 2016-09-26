@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerAttack : MonoBehaviour {
 
+    //public GameObject player;
 	// Use this for initialization
 	void Start () {
         enabled = false;
@@ -16,7 +17,7 @@ public class PlayerAttack : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Z))
         {
-            enabled = true;
+            //enabled = true;
         }
         if (enabled)
         {
@@ -26,5 +27,9 @@ public class PlayerAttack : MonoBehaviour {
                 Destroy(col.gameObject);
             }
         }
+    }
+    public void setEnabled(bool isEnable)
+    {
+        enabled = isEnable;
     }
 }
