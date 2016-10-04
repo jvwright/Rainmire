@@ -94,12 +94,13 @@ public class Control : MonoBehaviour
     }
     /*
      * Called at the end of the attack animation to disable the sword hitbox  
+     * There is probably a much better way to do this
      */
     void setEnabled(string dir)
     {
         if (dir == "L")
         {
-            attackD.setEnabled(false);
+            attackL.setEnabled(false);
         }
         if (dir == "R")
         {

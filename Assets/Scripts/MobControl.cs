@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MobAI : MonoBehaviour {
+public class MobControl : MonoBehaviour
+{
     public GameObject Player;
     float aggroRange = 5;    //Distance when the unit will start tracking the player  
     float deaggroRange = 10;  //Distance when the unit will stop tracking the player
@@ -10,10 +11,13 @@ public class MobAI : MonoBehaviour {
     float baseSpeed = 2;      //The unit's base speed
     float speed = 2;          //Value that changes when buffed or debuffed
     float health = 10;        //The unit's current health
+    float dmgCD = 0.5f;
+    float dmgTimer = 0;
     // Use this for initialization
-    void Start () {
-	
-	}
+    void Start()
+    {
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,7 +26,7 @@ public class MobAI : MonoBehaviour {
         {
             aggro = true;
         }
-        if(Vector2.Distance(transform.position, Player.transform.position) > deaggroRange)
+        if (Vector2.Distance(transform.position, Player.transform.position) > deaggroRange)
         {
             aggro = false;
         }
@@ -52,8 +56,22 @@ public class MobAI : MonoBehaviour {
             }
         }
     }
-    public void mobHealth(int damage)
+    public void damage(int dmg)
     {
-        health = health - damage;
+        if (dmgTimer > 0)
+        {
+            dmgTimer -= dmgCD;
+        }
+        else
+        {
+            health = health - dmg;
+            Debug.Log(health);
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+            dmgTimer = dmgCD;
+        }
+
     }
 }

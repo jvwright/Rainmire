@@ -26,8 +26,8 @@ public class PlayerAttack : MonoBehaviour
         {
             if (col.gameObject.tag == "Enemy")
             {
-                //Debug.Log("test");
-                Destroy(col.gameObject);
+                //Destroy(col.gameObject);
+                col.SendMessageUpwards("damage", 3);
             }
         }
     }
