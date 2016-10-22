@@ -5,8 +5,9 @@ public class MobControl : MonoBehaviour
 {
     public GameObject Player;
     public PlayerHealth PH;
-    float attackRange = 2;    //Mobs will attempt to attack the player within this range
+    float attackRange = 1;    //Mobs will attempt to attack the player within this range
     float strength;           //damage done by an attack, will probably want to change this for different enemies
+    float attackTimer;        //For changing how often an enemy can attack
     float aggroRange = 5;    //Distance when the unit will start tracking the player  
     float deaggroRange = 10;  //Distance when the unit will stop tracking the player
     bool aggro = false;       //If the unit is tracking the player
@@ -19,16 +20,23 @@ public class MobControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        strength = 20;
+        attackTimer = 5;
+        strength = 10;
         PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, Player.transform.position) < aggroRange)
+        //Increase attackTimer to make enemies attack less often
+        if (attackTimer > 0)
         {
-            aggro = true;
+            attackTimer -= 1;
+        }
+        if ((Vector2.Distance(transform.position, Player.transform.position) < aggroRange) && attackTimer == 0)
+        {
+             attackTimer = 5;
+                    aggro = true;
         }
         if (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
         {
@@ -64,6 +72,7 @@ public class MobControl : MonoBehaviour
             }
         }
     }
+    //how enemies inflict damage on the player
     public void Attack() {
         if(Player.GetComponent("PlayerHealth") != null)
         {

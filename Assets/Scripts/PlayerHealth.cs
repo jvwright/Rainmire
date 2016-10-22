@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    //Use this to do damage to the character
     public void Strike(float damage)
     {
         HP = HP - damage;
