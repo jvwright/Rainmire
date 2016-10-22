@@ -4,6 +4,9 @@ using System.Collections;
 public class MobControl : MonoBehaviour
 {
     public GameObject Player;
+    public PlayerHealth PH;
+    float attackRange = 2;    //Mobs will attempt to attack the player within this range
+    float strength;           //damage done by an attack, will probably want to change this for different enemies
     float aggroRange = 5;    //Distance when the unit will start tracking the player  
     float deaggroRange = 10;  //Distance when the unit will stop tracking the player
     bool aggro = false;       //If the unit is tracking the player
@@ -16,7 +19,8 @@ public class MobControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        strength = 20;
+        PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
     }
 
     // Update is called once per frame
@@ -25,6 +29,10 @@ public class MobControl : MonoBehaviour
         if (Vector2.Distance(transform.position, Player.transform.position) < aggroRange)
         {
             aggro = true;
+        }
+        if (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
+        {
+            Attack();
         }
         if (Vector2.Distance(transform.position, Player.transform.position) > deaggroRange)
         {
@@ -54,6 +62,12 @@ public class MobControl : MonoBehaviour
                     transform.Translate(Vector2.down * Time.deltaTime * speed);
                 }
             }
+        }
+    }
+    public void Attack() {
+        if(Player.GetComponent("PlayerHealth") != null)
+        {
+          PH.Strike(strength);
         }
     }
     public void damage(int dmg)
