@@ -6,18 +6,20 @@ public class MobControl : MonoBehaviour
 {
     public GameObject Player;
     private Seeker seeker;
-    //The current path being followed
-    public Path path;
-    //The max distance from the AI to a waypoint for it to continue to the next waypoint
-    public float nextWaypointDistance = 2;
-    //The waypoint we are currently moving towards
-    private int currentWaypoint = 0;
-/* not currently used
+    public Path path;                           //The current path being followed
+    public float nextWaypointDistance = 2;      //The max distance from the AI to a waypoint for it to continue to the next waypoint
+    private int currentWaypoint = 0;            //The waypoint we are currently moving towards
+    public PlayerHealth PH;   //Player health
+    float attackRange = 1;    //Mobs will attempt to attack the player within this range
+    float strength;           //damage done by an attack, will probably want to change this for different enemies
+    float attackTimer;        //For changing how often an enemy can attack
+
+    //not used currently
     float aggroRange = 5;     //Distance when the unit will start tracking the player  
     float deaggroRange = 10;  //Distance when the unit will stop tracking the player
+
     bool aggro = false;       //If the unit is tracking the player
     double minDist = 1.25;    //If the player is less than minDist away the unit will stop moving closer
-    */
     float baseSpeed = 2;      //The unit's base speed
     float speed = 2;          //Value that changes when buffed or debuffed
     float health = 10;        //The unit's current health
@@ -29,9 +31,11 @@ public class MobControl : MonoBehaviour
     void Start()
     {
         seeker = GetComponent<Seeker>();
-
         //Start a new path to the targetPosition, return the result to the OnPathComplete function
         seeker.StartPath(transform.position, Player.transform.position, OnPathComplete);
+        attackTimer = 5;
+        strength = 10;
+        PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
     }
 
     public void OnPathComplete(Path p)
@@ -52,6 +56,20 @@ public class MobControl : MonoBehaviour
         {
             return;
         }
+        //Increase attackTimer to make enemies attack less often
+        if (attackTimer > 0)
+        {
+            attackTimer -= 1;
+        }
+        if ((Vector2.Distance(transform.position, Player.transform.position) < aggroRange) && attackTimer == 0)
+        {
+            attackTimer = 5;
+            aggro = true;
+        }
+        if (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
+        {
+            Attack();
+        }
         if (currentWaypoint >= path.vectorPath.Count)
         {
             Debug.Log("End Of Path Reached");
@@ -71,43 +89,18 @@ public class MobControl : MonoBehaviour
             return;
         }
 
+    }
 
-    /* Old player tracking
-    if (Vector2.Distance(transform.position, Player.transform.position) < aggroRange)
+    //how enemies inflict damage on the player
+    public void Attack()
     {
-        aggro = true;
-    }
-    if (Vector2.Distance(transform.position, Player.transform.position) > deaggroRange)
-    {
-        aggro = false;
-    }
-    if (aggro)
-    {
-        // determine's if the mob is close enough to stop moving along the x-axis
-        if (Vector2.Distance(transform.position, Player.transform.position) > minDist)
+        if (Player.GetComponent("PlayerHealth") != null)
         {
-            if (transform.position.x > Player.transform.position.x)
-            {
-                transform.Translate(Vector2.left * Time.deltaTime * speed);
-            }
-            if (transform.position.x < Player.transform.position.x)
-            {
-                transform.Translate(Vector2.right * Time.deltaTime * speed);
-            }
-
-            //determines if the mob is close enough to stop moving along the y-axis
-            if (transform.position.y < Player.transform.position.y)
-            {
-                transform.Translate(Vector2.up * Time.deltaTime * speed);
-            }
-            if (transform.position.y > Player.transform.position.y)
-            {
-                transform.Translate(Vector2.down * Time.deltaTime * speed);
-            }
+            PH.Strike(strength);
         }
-    }*/
-}
-public void damage(int dmg)
+    }
+
+    public void damage(int dmg)
     {
         if (dmgTimer > 0)
         {
