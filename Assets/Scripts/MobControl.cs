@@ -7,10 +7,10 @@ public class MobControl : MonoBehaviour
     public GameObject Player;
     private Seeker seeker;
     public Path path;                           //The current path being followed
-    public float nextWaypointDistance = 2;      //The max distance from the AI to a waypoint for it to continue to the next waypoint
+    public float nextWaypointDistance = .5f;      //The max distance from the AI to a waypoint for it to continue to the next waypoint
     private int currentWaypoint = 0;            //The waypoint we are currently moving towards
     public PlayerHealth PH;   //Player health
-    float attackRange = 1;    //Mobs will attempt to attack the player within this range
+    float attackRange = 2;    //Mobs will attempt to attack the player within this range
     float strength;           //damage done by an attack, will probably want to change this for different enemies
     float attackTimer;        //For changing how often an enemy can attack
 
@@ -23,8 +23,8 @@ public class MobControl : MonoBehaviour
     float baseSpeed = 2;      //The unit's base speed
     float speed = 2;          //Value that changes when buffed or debuffed
     float health = 10;        //The unit's current health
-    float dmgCD = 0.5f;
-    float dmgTimer = 0;
+    float dmgCD = 5f;         //used for invincibility after being hit
+    float dmgTimer = 0;       //used for invincibility after being hit
 
 
     // Use this for initialization
@@ -33,8 +33,8 @@ public class MobControl : MonoBehaviour
         seeker = GetComponent<Seeker>();
         //Start a new path to the targetPosition, return the result to the OnPathComplete function
         seeker.StartPath(transform.position, Player.transform.position, OnPathComplete);
-        attackTimer = 5;
-        strength = 10;
+        attackTimer = 120;
+        strength = 0;
         PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
     }
 
@@ -52,10 +52,8 @@ public class MobControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (path == null)
-        {
-            return;
-        }
+
+        //----------------------------------------------------------------------------------------------------------
         //Increase attackTimer to make enemies attack less often
         if (attackTimer > 0)
         {
@@ -63,22 +61,37 @@ public class MobControl : MonoBehaviour
         }
         if ((Vector2.Distance(transform.position, Player.transform.position) < aggroRange) && attackTimer == 0)
         {
-            attackTimer = 5;
+            attackTimer = 500;
             aggro = true;
         }
         if (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
         {
             Attack();
         }
+        //------------------------------------------------------------------------------------------------------------
+        //Pathfinding
+        if (path == null)
+        {
+            return;
+        }
+
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            Debug.Log("End Of Path Reached");
+            //Debug.Log("End Of Path Reached");
             return;
         }
 
         //Direction to the next waypoint
         Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+        Debug.Log("path.vectorPath[currentWaypoint] "+ path.vectorPath[currentWaypoint]);
+        Debug.Log("current waypoint "+ currentWaypoint);
+        Debug.Log("transform.position" + transform.position);
+        Debug.Log("direction " + dir);
+        //Debug.Log("x " + dir.x);
+        //Debug.Log("y " + dir.y);
+
         dir *= speed * Time.fixedDeltaTime;
+        //Debug.Log("currentwaypoint " + currentWaypoint);
         this.gameObject.transform.Translate(dir);
 
         //Check if we are close enough to the next waypoint
@@ -88,12 +101,13 @@ public class MobControl : MonoBehaviour
             currentWaypoint++;
             return;
         }
-
+        //---------------------------------------------------------------------------------------------------------
     }
 
     //how enemies inflict damage on the player
     public void Attack()
     {
+
         if (Player.GetComponent("PlayerHealth") != null)
         {
             PH.Strike(strength);
@@ -109,7 +123,7 @@ public class MobControl : MonoBehaviour
         else
         {
             health = health - dmg;
-            Debug.Log(health);
+            Debug.Log("Enemy health after hit "+health);
             if (health <= 0)
             {
                 Destroy(gameObject);

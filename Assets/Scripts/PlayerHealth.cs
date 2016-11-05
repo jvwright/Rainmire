@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     public void Strike(float damage)
     {
         HP = HP - damage;
+        Debug.Log(HP);
         if (HP <= 0)
         {
             Destroy(player);
