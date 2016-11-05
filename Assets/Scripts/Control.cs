@@ -72,22 +72,22 @@ public class Control : MonoBehaviour
         {
             if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft"))
             {
-                attackL.setEnabled(true);
+                attackL.setEnabled(true);//enables left hit box for player
                 anim.CrossFade("AttackLeft", 0);
             }
             else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunRight") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight"))
             {
-                attackR.setEnabled(true);
+                attackR.setEnabled(true);//enables right hit box for player
                 anim.CrossFade("AttackRight", 0);
             }
             else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunForward") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward"))
             {
-                attackU.setEnabled(true);
+                attackU.setEnabled(true);//enables top hit box for player
                 anim.CrossFade("AttackForward", 0);
             }
             else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunBack") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack"))
             {
-                attackD.setEnabled(true);
+                attackD.setEnabled(true);//enables bottom hit box for player
                 anim.CrossFade("AttackBack", 0);
             }
         }
