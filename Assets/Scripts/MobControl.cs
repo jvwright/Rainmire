@@ -7,7 +7,7 @@ public class MobControl : MonoBehaviour
     public GameObject Player;
     private Seeker seeker;
     public Path path;                           //The current path being followed
-    public float nextWaypointDistance = .5f;      //The max distance from the AI to a waypoint for it to continue to the next waypoint
+    float nextWaypointDistance = .1f;          //The max distance from the AI to a waypoint for it to continue to the next waypoint
     private int currentWaypoint = 0;            //The waypoint we are currently moving towards
     public PlayerHealth PH;   //Player health
     float attackRange = 2;    //Mobs will attempt to attack the player within this range
@@ -34,7 +34,7 @@ public class MobControl : MonoBehaviour
         //Start a new path to the targetPosition, return the result to the OnPathComplete function
         seeker.StartPath(transform.position, Player.transform.position, OnPathComplete);
         attackTimer = 120;
-        strength = 0;
+        strength = 10;
         PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
     }
 
@@ -83,13 +83,13 @@ public class MobControl : MonoBehaviour
 
         //Direction to the next waypoint
         Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        Debug.Log("path.vectorPath[currentWaypoint] "+ path.vectorPath[currentWaypoint]);
+        /*Debug.Log("path.vectorPath[currentWaypoint] "+ path.vectorPath[currentWaypoint]);
         Debug.Log("current waypoint "+ currentWaypoint);
         Debug.Log("transform.position" + transform.position);
         Debug.Log("direction " + dir);
-        //Debug.Log("x " + dir.x);
-        //Debug.Log("y " + dir.y);
-
+        Debug.Log("x " + dir.x);
+        Debug.Log("y " + dir.y);
+        */
         dir *= speed * Time.fixedDeltaTime;
         //Debug.Log("currentwaypoint " + currentWaypoint);
         this.gameObject.transform.Translate(dir);
