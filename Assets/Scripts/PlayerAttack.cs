@@ -18,19 +18,21 @@ public class PlayerAttack : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col)
     {
+        if (Input.GetKey(KeyCode.Z))
+        {
+            //enabled = true;
+        }
         if (enabled)
         {
             if (col.gameObject.tag == "Enemy")
             {
-                //this calls the damage method in the mobControl class
+                //Destroy(col.gameObject);
                 col.SendMessageUpwards("damage", 3);
             }
         }
     }
     /*
      * Enables and disables the sword hitbox
-     * called to enable the hitbox by the control class before the animation is startes
-     * called to disable when the animation ends
      */
     public void setEnabled(bool isEnable)
     {

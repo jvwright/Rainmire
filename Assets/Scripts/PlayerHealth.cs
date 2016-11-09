@@ -22,8 +22,8 @@ public class PlayerHealth : MonoBehaviour
     //Use this to do damage to the character
     public void Strike(float damage)
     {
+        Debug.Log("player hp" + HP);
         HP = HP - damage;
-        Debug.Log(HP);
         if (HP <= 0)
         {
             Destroy(player);
