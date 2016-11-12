@@ -40,9 +40,9 @@ public class Control : MonoBehaviour
         // if (Input.GetKey(KeyCode.DownArrow)) { transform.Translate(Vector2.down * Time.deltaTime * movementSpeed); }
 
         if (Input.GetKey(KeyCode.LeftArrow)) { rb.velocity = Vector2.left * movementSpeed; }
-        if (Input.GetKey(KeyCode.RightArrow)) { rb.velocity = Vector2.right * movementSpeed; }
-        if (Input.GetKey(KeyCode.UpArrow)) { rb.velocity = Vector2.up * movementSpeed; }
-        if (Input.GetKey(KeyCode.DownArrow)) { rb.velocity = Vector2.down * movementSpeed; }
+        else if (Input.GetKey(KeyCode.RightArrow)) { rb.velocity = Vector2.right * movementSpeed; }
+        else if (Input.GetKey(KeyCode.UpArrow)) { rb.velocity = Vector2.up * movementSpeed; }
+        else if (Input.GetKey(KeyCode.DownArrow)) { rb.velocity = Vector2.down * movementSpeed; }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
