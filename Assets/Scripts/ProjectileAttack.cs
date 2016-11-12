@@ -33,6 +33,6 @@ public class ProjectileAttack : MonoBehaviour {
     {
         GameObject attack = (GameObject)Instantiate(projectile, transform.position, transform.rotation);
         rb = attack.GetComponent<Rigidbody2D>();
-        rb.AddForce(s * 100F);
+        rb.AddForce(Vector3.ClampMagnitude(s*1000,500));
     }
 }
