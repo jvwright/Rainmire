@@ -34,62 +34,54 @@ public class Control : MonoBehaviour
 
         const float movementSpeed = 10;
 
-        // if (Input.GetKey(KeyCode.LeftArrow)) { transform.Translate(Vector2.left * Time.deltaTime * movementSpeed); }
-        // if (Input.GetKey(KeyCode.RightArrow)) { transform.Translate(Vector2.right * Time.deltaTime * movementSpeed); }
-        // if (Input.GetKey(KeyCode.UpArrow)) { transform.Translate(Vector2.up * Time.deltaTime * movementSpeed); }
-        // if (Input.GetKey(KeyCode.DownArrow)) { transform.Translate(Vector2.down * Time.deltaTime * movementSpeed); }
-
         if (Input.GetKey(KeyCode.LeftArrow)) { rb.velocity = Vector2.left * movementSpeed; }
         else if (Input.GetKey(KeyCode.RightArrow)) { rb.velocity = Vector2.right * movementSpeed; }
         else if (Input.GetKey(KeyCode.UpArrow)) { rb.velocity = Vector2.up * movementSpeed; }
         else if (Input.GetKey(KeyCode.DownArrow)) { rb.velocity = Vector2.down * movementSpeed; }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            // rb.velocity = Vector2.left * movementSpeed;
-            anim.CrossFade("RunLeft", 0);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            // rb.velocity = Vector2.right * movementSpeed;
-            anim.CrossFade("RunRight", 0);
-        }
-        else if (Input.GetKey(KeyCode.UpArrow))
-        {
-            // rb.velocity = Vector2.up * movementSpeed;
-            anim.CrossFade("RunForward", 0);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            // rb.velocity = Vector2.down * movementSpeed;
-            anim.CrossFade("RunBack", 0);
-        }
 
         /*
          * Reading input for attack and animating it. 
          */
         if (Input.GetKey(KeyCode.Z))
         {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft"))
+            // anim.GetCurrentAnimatorStateInfo(0).IsName("RunLeft")
+            if (Input.GetKey(KeyCode.LeftArrow) || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft"))
             {
                 attackL.setEnabled(true);
                 anim.CrossFade("AttackLeft", 0);
             }
-            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunRight") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight"))
+            else if (Input.GetKey(KeyCode.RightArrow) || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight"))
             {
                 attackR.setEnabled(true);
                 anim.CrossFade("AttackRight", 0);
             }
-            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunForward") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward"))
+            else if (Input.GetKey(KeyCode.UpArrow) || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward"))
             {
                 attackU.setEnabled(true);
                 anim.CrossFade("AttackForward", 0);
             }
-            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("RunBack") || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack"))
+            else if (Input.GetKey(KeyCode.DownArrow) || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack"))
             {
                 attackD.setEnabled(true);
                 anim.CrossFade("AttackBack", 0);
             }
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.CrossFade("RunLeft", 0);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            anim.CrossFade("RunRight", 0);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow))
+        {
+            anim.CrossFade("RunForward", 0);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            anim.CrossFade("RunBack", 0);
         }
     }
     /*
