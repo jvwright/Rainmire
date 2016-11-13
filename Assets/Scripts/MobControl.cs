@@ -34,7 +34,7 @@ public class MobControl : MonoBehaviour
         //Start a new path to the targetPosition, return the result to the OnPathComplete function
         seeker.StartPath(transform.position, Player.transform.position, OnPathComplete);
         attackTimer = 5;
-        strength = 10;
+        strength = .5f;
         PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
     }
 

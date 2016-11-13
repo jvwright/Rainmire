@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
 
     float HP;
     GameObject player;
+    public GameObject image;
+
     // Use this for initialization
     void Start()
     {
@@ -16,7 +18,6 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         player = this.gameObject;
-
     }
 
     //Use this to do damage to the character
@@ -24,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("player hp" + HP);
         HP = HP - damage;
+        GameObject.Find("GreenHealthBar").transform.GetComponent("HealthBar").SendMessage("decreaseHealth", HP);
         if (HP <= 0)
         {
             Destroy(player);
