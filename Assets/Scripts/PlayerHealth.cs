@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour
 {
 
-    float HP;
+    public float HP;
     GameObject player;
     public GameObject image;
 
@@ -23,12 +23,13 @@ public class PlayerHealth : MonoBehaviour
     //Use this to do damage to the character
     public void Strike(float damage)
     {
-        Debug.Log("player hp" + HP);
+        //Debug.Log("player hp" + HP);
         HP = HP - damage;
-        GameObject.Find("GreenHealthBar").transform.GetComponent("HealthBar").SendMessage("decreaseHealth", HP);
         if (HP <= 0)
         {
-            Destroy(player);
+			HP = 0;
+			player.gameObject.SetActive (false);
         }
+		GameObject.Find("GreenHealthBar").transform.GetComponent("HealthBar").SendMessage("decreaseHealth", HP);
     }
 }

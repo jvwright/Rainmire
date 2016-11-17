@@ -5,7 +5,7 @@ using System.Collections;
 public class Control : MonoBehaviour
 {
 
-    public float speed;
+	public float movementSpeed = 10;
     private Animator anim;
     private Rigidbody2D rb;
     public PlayerAttack attackL;
@@ -32,12 +32,20 @@ public class Control : MonoBehaviour
          * moving the character, I'm not sure how to achieve diagonal movement. 
          */
 
-        const float movementSpeed = 10;
-
-        if (Input.GetKey(KeyCode.LeftArrow)) { rb.velocity = Vector2.left * movementSpeed; }
-        else if (Input.GetKey(KeyCode.RightArrow)) { rb.velocity = Vector2.right * movementSpeed; }
-        else if (Input.GetKey(KeyCode.UpArrow)) { rb.velocity = Vector2.up * movementSpeed; }
-        else if (Input.GetKey(KeyCode.DownArrow)) { rb.velocity = Vector2.down * movementSpeed; }
+		Vector2 dir;
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			dir = Vector2.left;
+		} else if (Input.GetKey (KeyCode.RightArrow)) {
+			dir = Vector2.right;
+		} else if (Input.GetKey (KeyCode.UpArrow)) {
+			dir = Vector2.up;
+		} else if (Input.GetKey (KeyCode.DownArrow)) {
+			dir = Vector2.down;
+		} else {
+			dir = Vector2.zero;
+		}
+		dir = dir * movementSpeed * Time.deltaTime;
+		rb.MovePosition(rb.position + dir);
 
 
         /*

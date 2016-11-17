@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     {
 
     }
+
     void OnTriggerStay2D(Collider2D col)
     {
         if (Input.GetKey(KeyCode.Z))

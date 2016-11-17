@@ -310,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f82e9ee3f52bdf4e884b7fcda22356d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  image: {fileID: 0}
 --- !u!114 &114000012535798156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -332,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9824c06cdeb624cbf5d02ea288088d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  movementSpeed: 10
   attackL: {fileID: 114000012535798156}
   attackR: {fileID: 114000010877193190}
   attackU: {fileID: 114000013474065106}

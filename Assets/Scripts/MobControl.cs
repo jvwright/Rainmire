@@ -4,15 +4,15 @@ using Pathfinding;
 
 public class MobControl : MonoBehaviour
 {
-    public GameObject Player;
+    private GameObject Player;
     private Seeker seeker;
     public Path path;                           //The current path being followed
     float nextWaypointDistance = .2f;      //The max distance from the AI to a waypoint for it to continue to the next waypoint
     private int currentWaypoint = 0;            //The waypoint we are currently moving towards
     public PlayerHealth PH;   //Player health
     float attackRange = 1.5f;    //Mobs will attempt to attack the player within this range
-    float strength;           //damage done by an attack, will probably want to change this for different enemies
-    float attackTimer;        //For changing how often an enemy can attack
+    public float strength = 1;           //damage done by an attack, will probably want to change this for different enemies
+	public float attackTimer = 5;        //For changing how often an enemy can attack
 
     //not used currently
     float aggroRange = 5;     //Distance when the unit will start tracking the player  
@@ -30,11 +30,10 @@ public class MobControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		Player = GameObject.FindWithTag ("Player");
         seeker = GetComponent<Seeker>();
         //Start a new path to the targetPosition, return the result to the OnPathComplete function
         seeker.StartPath(transform.position, Player.transform.position, OnPathComplete);
-        attackTimer = 5;
-        strength = .5f;
         PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
     }
 
@@ -77,9 +76,10 @@ public class MobControl : MonoBehaviour
         }
 
         //Direction to the next waypoint
-        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        dir *= speed * Time.fixedDeltaTime;
-        this.gameObject.transform.Translate(dir);
+        Vector2 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+		dir *= speed * Time.fixedDeltaTime;
+		Rigidbody2D rg = this.gameObject.GetComponent<Rigidbody2D>();
+		rg.MovePosition(rg.position + dir);
 
         //Check if we are close enough to the next waypoint
         //If we are, proceed to follow the next waypoint
@@ -94,7 +94,7 @@ public class MobControl : MonoBehaviour
     //how enemies inflict damage on the player
     public void Attack()
     {
-        if (Player.GetComponent("PlayerHealth") != null)
+		if (Player.GetComponent("PlayerHealth") != null && Player.active == true)
         {
             PH.Strike(strength);
         }
