@@ -4,9 +4,10 @@ using Pathfinding;
 
 public class MobControl : MonoBehaviour
 {
-    private GameObject Player;
+    public GameObject Player;
     private Seeker seeker;
     public Path path;                           //The current path being followed
+    private Vector3 target;
     float nextWaypointDistance = .2f;      //The max distance from the AI to a waypoint for it to continue to the next waypoint
     private int currentWaypoint = 0;            //The waypoint we are currently moving towards
     public PlayerHealth PH;   //Player health
@@ -25,16 +26,22 @@ public class MobControl : MonoBehaviour
     float health = 10;        //The unit's current health
     float dmgCD = 0.5f;
     float dmgTimer = 0;
+    int repathDelay = 90;
+
 
 
     // Use this for initialization
     void Start()
     {
-		Player = GameObject.FindWithTag ("Player");
+        target = FindTarget();
+        //Player = GameObject.FindWithTag ("Player");
         seeker = GetComponent<Seeker>();
         //Start a new path to the targetPosition, return the result to the OnPathComplete function
         seeker.StartPath(transform.position, Player.transform.position, OnPathComplete);
         PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
+        aggro = true;
+        attackTimer = 5;
+        strength = 10;
     }
 
     public void OnPathComplete(Path p)
@@ -51,6 +58,7 @@ public class MobControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        repathDelay--;
         if (path == null)
         {
             return;
@@ -60,19 +68,27 @@ public class MobControl : MonoBehaviour
         {
             attackTimer -= 1;
         }
+
+        /*
         if ((Vector2.Distance(transform.position, Player.transform.position) < aggroRange) && attackTimer == 0)
         {
             attackTimer = 5;
             aggro = true;
-        }
+        }*/
         if (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
         {
             Attack();
+            attackTimer = 5;
         }
+        if (aggro && Vector2.Distance(target, Player.transform.position) > 3)
+        {
+            Repath();
+        }
+
         if (currentWaypoint >= path.vectorPath.Count)
         {
             //Debug.Log("End Of Path Reached");
-            return;
+            Repath();
         }
 
         //Direction to the next waypoint
@@ -117,5 +133,28 @@ public class MobControl : MonoBehaviour
             dmgTimer = dmgCD;
         }
 
+    }
+
+    public Vector3 FindTarget()
+    {
+        if (Vector2.Distance(transform.position, Player.transform.position) < aggroRange)
+        {
+            return Player.transform.position;
+        }
+        else
+        {
+            return Player.transform.position;//TODO  add a list of points to patrol
+        }
+    }
+
+    public void Repath()
+    {
+        if (repathDelay <= 0)
+        {
+            target = FindTarget();
+            seeker.StartPath(transform.position, target, OnPathComplete);
+            //currentWaypoint = 0;
+            repathDelay = 90;
+        }
     }
 }
