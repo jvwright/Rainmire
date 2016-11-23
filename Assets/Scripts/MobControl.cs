@@ -1,32 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Pathfinding;
+using System.Collections.Generic;
 
 public class MobControl : MonoBehaviour
 {
+
+    // Pathfinding variables
     public GameObject Player;
     private Seeker seeker;
-    public Path path;                           //The current path being followed
-    private Vector3 target;
-    float nextWaypointDistance = .2f;      //The max distance from the AI to a waypoint for it to continue to the next waypoint
-    private int currentWaypoint = 0;            //The waypoint we are currently moving towards
-    public PlayerHealth PH;   //Player health
-    float attackRange = 1.5f;    //Mobs will attempt to attack the player within this range
-    public float strength = 1;           //damage done by an attack, will probably want to change this for different enemies
-	public float attackTimer = 5;        //For changing how often an enemy can attack
+    public Path path;                                       //The current path being followed
+    private Vector3 target;                                 //The list of points making up the unit's current path
+    float nextWaypointDistance = .15f;                       //The max distance from the AI to a waypoint for it to continue to the next waypoint
+    private int currentWaypoint = 0;                        //The waypoint we are currently moving towards
+    public List<Vector3> patrol = new List<Vector3>();       //list of points that make up the units area to patrol
+    private int patrolPoint = 0;                            //The point on the list that the unit it moving towards
+    int repathDelay = 90;                                   //Minimum delay between repathing
 
-    //not used currently
-    float aggroRange = 5;     //Distance when the unit will start tracking the player  
-    float deaggroRange = 10;  //Distance when the unit will stop tracking the player
+    // General movement
+    Rigidbody2D rg;                                         //The rigid body attached to the unit
+    bool aggro = false;                                     //If the unit is tracking the player
+    public float aggroRange;                            //Distance when the unit will start tracking the player  
+    public float deaggroRange;                         //Distance when the unit will stop tracking the player
+    public float baseSpeed;                             //The unit's base speed
+    float speed = 2;                                        //Value that changes when buffed or debuffed
+    public float health;                               //The unit's current health
+    double minDist = 1.25;                                  //If the player is less than minDist away the unit will stop moving closer
 
-    bool aggro = false;       //If the unit is tracking the player
-    double minDist = 1.25;    //If the player is less than minDist away the unit will stop moving closer
-    float baseSpeed = 2;      //The unit's base speed
-    float speed = 2;          //Value that changes when buffed or debuffed
-    float health = 10;        //The unit's current health
-    float dmgCD = 0.5f;
-    float dmgTimer = 0;
-    int repathDelay = 90;
+    // Combat variables
+    public PlayerHealth PH;                                 //Player health
+    public float attackRange;                        //Mobs will attempt to attack the player within this range
+    public float strength;                              //Damage done by an attack, will probably want to change this for different enemies
+	public float attackTimer;                           //For changing how often an enemy can attack
+    float dmgCD = 0.5f;                                     //The amount of time  the unit is invincible after being hit
+    float dmgTimer = 0;                                     //the timer keeping track of invincibility
+
 
 
 
@@ -34,14 +42,13 @@ public class MobControl : MonoBehaviour
     void Start()
     {
         target = FindTarget();
-        //Player = GameObject.FindWithTag ("Player");
         seeker = GetComponent<Seeker>();
         //Start a new path to the targetPosition, return the result to the OnPathComplete function
-        seeker.StartPath(transform.position, Player.transform.position, OnPathComplete);
+        seeker.StartPath(transform.position, target, OnPathComplete);
         PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
-        aggro = true;
-        attackTimer = 5;
-        strength = 10;
+        rg = this.gameObject.GetComponent<Rigidbody2D>();
+        //attackTimer = 5;
+        //strength = 10;
     }
 
     public void OnPathComplete(Path p)
@@ -75,6 +82,16 @@ public class MobControl : MonoBehaviour
             attackTimer = 5;
             aggro = true;
         }*/
+        if(Vector2.Distance(transform.position, Player.transform.position) < aggroRange&& !aggro)
+        {
+            aggro = true;
+        }
+        if(Vector2.Distance(transform.position, Player.transform.position) > deaggroRange && aggro)
+        {
+            aggro = false;
+            Repath();
+        }
+
         if (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
         {
             Attack();
@@ -94,7 +111,6 @@ public class MobControl : MonoBehaviour
         //Direction to the next waypoint
         Vector2 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
 		dir *= speed * Time.fixedDeltaTime;
-		Rigidbody2D rg = this.gameObject.GetComponent<Rigidbody2D>();
 		rg.MovePosition(rg.position + dir);
 
         //Check if we are close enough to the next waypoint
@@ -137,13 +153,22 @@ public class MobControl : MonoBehaviour
 
     public Vector3 FindTarget()
     {
-        if (Vector2.Distance(transform.position, Player.transform.position) < aggroRange)
+        if (aggro)
         {
             return Player.transform.position;
         }
         else
         {
-            return Player.transform.position;//TODO  add a list of points to patrol
+            Vector3 temp = patrol[patrolPoint];
+            if (patrolPoint == patrol.Count-1)
+            {
+                patrolPoint = 0;
+            }
+            else
+            {
+                patrolPoint++;
+            }
+            return temp;
         }
     }
 
@@ -153,7 +178,6 @@ public class MobControl : MonoBehaviour
         {
             target = FindTarget();
             seeker.StartPath(transform.position, target, OnPathComplete);
-            //currentWaypoint = 0;
             repathDelay = 90;
         }
     }
