@@ -1967,6 +1967,44 @@ Prefab:
       propertyPath: patrol.Array.data[3].y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011721950368, guid: 48a04263ba8ab3945863cf43d7627106,
+        type: 2}
+      propertyPath: minDist
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011721950368, guid: 48a04263ba8ab3945863cf43d7627106,
+        type: 2}
+      propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011721950368, guid: 48a04263ba8ab3945863cf43d7627106,
+        type: 2}
+      propertyPath: baseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011721950368, guid: 48a04263ba8ab3945863cf43d7627106,
+        type: 2}
+      propertyPath: attackRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011721950368, guid: 48a04263ba8ab3945863cf43d7627106,
+        type: 2}
+      propertyPath: aggroRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011721950368, guid: 48a04263ba8ab3945863cf43d7627106,
+        type: 2}
+      propertyPath: deaggroRange
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010751438018, guid: 48a04263ba8ab3945863cf43d7627106, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010751438018, guid: 48a04263ba8ab3945863cf43d7627106, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48a04263ba8ab3945863cf43d7627106, type: 2}
   m_IsPrefabParent: 0

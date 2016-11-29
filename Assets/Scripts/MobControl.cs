@@ -7,8 +7,8 @@ public class MobControl : MonoBehaviour
 {
 
     // Pathfinding variables
-    public GameObject Player;
-    private Seeker seeker;
+    public GameObject Player;                               //The player objest
+    private Seeker seeker;                                  //Used to find the best path
     public Path path;                                       //The current path being followed
     private Vector3 target;                                 //The list of points making up the unit's current path
     float nextWaypointDistance = .15f;                      //The max distance from the AI to a waypoint for it to continue to the next waypoint
@@ -23,19 +23,20 @@ public class MobControl : MonoBehaviour
     public float aggroRange;                                //Distance when the unit will start tracking the player  
     public float deaggroRange;                              //Distance when the unit will stop tracking the player
     public float baseSpeed;                                 //The unit's base speed
-    float speed = 2;                                        //Value that changes when buffed or debuffed
+    float speed;                                            //Value that changes when buffed or debuffed
     public float health;                                    //The unit's current health
-    public float minDist;                                  //If the player is less than minDist away the unit will stop moving closer
+    public float minDist;                                   //If the player is less than minDist away the unit will stop moving closer
 
     // Combat variables
-    public PlayerHealth PH;                                 //Player health
+    PlayerHealth PH;                                        //Player health
     public float attackRange;                               //Mobs will attempt to attack the player within this range
     public float strength;                                  //Damage done by an attack, will probably want to change this for different enemies
-	public float attackTimer;                               //For changing how often an enemy can attack
+    public float attackTimer;                               //For changing how often an enemy can attack
     float dmgCD = 0.5f;                                     //The amount of time  the unit is invincible after being hit
     float dmgTimer = 0;                                     //the timer keeping track of invincibility
 
-
+    //Other variables
+    string unitName;                                        //Just for debugging with multiple units
 
 
     // Use this for initialization
@@ -47,19 +48,24 @@ public class MobControl : MonoBehaviour
         seeker.StartPath(transform.position, target, OnPathComplete);
         PH = GameObject.FindObjectOfType(typeof(PlayerHealth)) as PlayerHealth;
         rg = this.gameObject.GetComponent<Rigidbody2D>();
-        //attackTimer = 5;
-        //strength = 10;
+        speed = baseSpeed;
+        unitName = this.name;
     }
 
     public void OnPathComplete(Path p)
     {
-        Debug.Log("did the path have an error?" + p.error);
+        //Debug.Log("did the path have an error?" + p.error);
         if (!p.error)
         {
             path = p;
             //Reset the waypoint counter
             currentWaypoint = 0;
         }
+        else 
+        {
+            Debug.Log(unitName + "there was an error with the path" + p.error); 
+        }
+
     }
 
     // Update is called once per frame
@@ -88,12 +94,14 @@ public class MobControl : MonoBehaviour
         if(Vector2.Distance(transform.position, Player.transform.position) < aggroRange&& !aggro)
         {
             aggro = true;
+            Debug.Log(unitName + "Now tracking the player");
         }
 
         //If the player is too far away set aggro to false and return to the patrol
         if(Vector2.Distance(transform.position, Player.transform.position) > deaggroRange && aggro)
         {
             aggro = false;
+            Debug.Log(unitName + "No longer tracking the player");
             Repath();
         }
 
@@ -113,14 +121,16 @@ public class MobControl : MonoBehaviour
         //If at the end of the current path, repath
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            //Debug.Log("End Of Path Reached");
+            //Debug.Log(name + "End Of Path Reached");
             Repath();
+            return;
         }
 
         //Stop moving if too close to the player
-        Debug.Log("dist" + Vector2.Distance(transform.position, Player.transform.position));
+        //Debug.Log("dist" + Vector2.Distance(transform.position, Player.transform.position));
         if (Vector2.Distance(transform.position, Player.transform.position) > minDist)
         {
+        //Debug.Log("current waypoint"+currentWaypoint);
             //Move to the next waypoint
             Vector2 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
             dir *= speed * Time.fixedDeltaTime;
@@ -155,7 +165,7 @@ public class MobControl : MonoBehaviour
         else
         {
             health = health - dmg;
-            Debug.Log(health);
+            Debug.Log(unitName + health);
             if (health <= 0)
             {
                 Destroy(gameObject);
