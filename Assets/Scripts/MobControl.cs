@@ -128,14 +128,14 @@ public class MobControl : MonoBehaviour
 
         //Stop moving if too close to the player
         //Debug.Log("dist" + Vector2.Distance(transform.position, Player.transform.position));
-        if (Vector2.Distance(transform.position, Player.transform.position) > minDist)
-        {
+        //if (Vector2.Distance(transform.position, Player.transform.position) > minDist)
+        //{
         //Debug.Log("current waypoint"+currentWaypoint);
             //Move to the next waypoint
             Vector2 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
             dir *= speed * Time.fixedDeltaTime;
             rg.MovePosition(rg.position + dir);
-        }
+        //}
 
         //Check if we are close enough to the next waypoint
         //If we are, proceed to follow the next waypoint
