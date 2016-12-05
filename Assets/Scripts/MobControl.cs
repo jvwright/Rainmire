@@ -32,6 +32,7 @@ public class MobControl : MonoBehaviour
     public float attackRange;                               //Mobs will attempt to attack the player within this range
     public float strength;                                  //Damage done by an attack, will probably want to change this for different enemies
     public float attackTimer;                               //For changing how often an enemy can attack
+    float attacktime;
     float dmgCD = 0.5f;                                     //The amount of time  the unit is invincible after being hit
     float dmgTimer = 0;                                     //the timer keeping track of invincibility
 
@@ -77,7 +78,7 @@ public class MobControl : MonoBehaviour
             return;
         }
         
-        //Increase attackTimer to make enemies attack less often
+        /*//Increase attackTimer to make enemies attack less often
         if (attackTimer > 0)
         {
             attackTimer -= 1;
@@ -108,9 +109,17 @@ public class MobControl : MonoBehaviour
         //If the player is close enough attack
         if (Vector2.Distance(transform.position, Player.transform.position) < attackRange)
         {
-            Attack();
-            attackTimer = 5;
+            if (attackTimer == 0)
+            {
+                Attack();
+                attackTimer = 5;
+            }
+            else
+            {
+                attackTimer--;
+            }
         }
+
 
         //If the unit is tracking the player and the player moves far enough away from the current target, repath
         if (aggro && Vector2.Distance(target, Player.transform.position) > 1)

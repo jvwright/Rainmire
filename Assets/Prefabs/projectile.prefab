@@ -23,7 +23,6 @@ GameObject:
   - 50: {fileID: 50000010069286586}
   - 114: {fileID: 114000013135554514}
   - 61: {fileID: 61000010567415934}
-  - 114: {fileID: 114000013666349664}
   m_Layer: 0
   m_Name: projectile
   m_TagString: Untagged
@@ -86,21 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ec4a12322985d4690c1828675065c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000013666349664
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011186133140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc8e480b5d1a4d48aa13e8133b441c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 7
-  collisionLayers:
-    serializedVersion: 2
-    m_Bits: 4294967001
 --- !u!212 &212000010892586766
 SpriteRenderer:
   m_ObjectHideFlags: 1
