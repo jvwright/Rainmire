@@ -5,6 +5,8 @@ Temp/
 Library/
 Assets/Art/*.meta
 *.png.meta
+ProjectSettings/
+
 =====================================
 Visual Studio / MonoDevelop generated
 =====================================
