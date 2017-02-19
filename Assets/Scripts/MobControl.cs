@@ -34,7 +34,7 @@ public class MobControl : MonoBehaviour
     public float attackTimer;                               //For changing how often an enemy can attack
     float attacktime;
     float dmgCD = 0.5f;                                     //The amount of time  the unit is invincible after being hit
-    float dmgTimer = 0;                                     //the timer keeping track of invincibility
+    float dmgTimer = 15;                                     //the timer keeping track of invincibility
 
     //Other variables
     string unitName;                                        //Just for debugging with multiple units
@@ -96,6 +96,7 @@ public class MobControl : MonoBehaviour
         {
             aggro = true;
             Debug.Log(unitName + "Now tracking the player");
+            Repath();
         }
 
         //If the player is too far away set aggro to false and return to the patrol
@@ -112,7 +113,7 @@ public class MobControl : MonoBehaviour
             if (attackTimer == 0)
             {
                 Attack();
-                attackTimer = 5;
+                attackTimer = 50;
             }
             else
             {
@@ -122,7 +123,7 @@ public class MobControl : MonoBehaviour
 
 
         //If the unit is tracking the player and the player moves far enough away from the current target, repath
-        if (aggro && Vector2.Distance(target, Player.transform.position) > 1)
+        if (aggro && Vector2.Distance(target, Player.transform.position) > 5)
         {
             Repath();
         }
@@ -136,15 +137,15 @@ public class MobControl : MonoBehaviour
         }
 
         //Stop moving if too close to the player
-        //Debug.Log("dist" + Vector2.Distance(transform.position, Player.transform.position));
-        //if (Vector2.Distance(transform.position, Player.transform.position) > minDist)
-        //{
-        //Debug.Log("current waypoint"+currentWaypoint);
+        //Debug.Log(unitname + " dist" + Vector2.Distance(transform.position, Player.transform.position));
+        if (Vector2.Distance(transform.position, Player.transform.position) > minDist)
+        {
+            //Debug.Log(unitname+" current waypoint "+currentWaypoint);
             //Move to the next waypoint
             Vector2 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
             dir *= speed * Time.fixedDeltaTime;
             rg.MovePosition(rg.position + dir);
-        //}
+        }
 
         //Check if we are close enough to the next waypoint
         //If we are, proceed to follow the next waypoint
@@ -208,14 +209,15 @@ public class MobControl : MonoBehaviour
         }
     }
 
-    //
+
     public void Repath()
     {
         if (repathDelay <= 0)
         {
             target = FindTarget();
             seeker.StartPath(transform.position, target, OnPathComplete);
-            repathDelay = 90;
+            repathDelay = 15;
         }
+
     }
 }
