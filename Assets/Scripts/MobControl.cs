@@ -93,20 +93,7 @@ public class MobControl : MonoBehaviour
         {
             attackTimer = 5;
             aggro = true;
-        }*/
-
-
-        if(Math.Abs(dir.x) > Math.Abs(dir.y))
-        {
-            if(dir.x > 0) anim.CrossFade("EnemyRunRight", 0);
-            else anim.CrossFade("EnemyRunLeft", 0);
-        } 
-        else 
-        {
-            if(dir.y > 0) anim.CrossFade("EnemyRunUp", 0);
-            else anim.CrossFade("EnemyRunDown", 0);
-        }
-        
+        }*/        
 
         //If the player is close enough set aggro to true
         if(Vector2.Distance(transform.position, Player.transform.position) < aggroRange&& !aggro)
@@ -129,6 +116,7 @@ public class MobControl : MonoBehaviour
         {
             if (attackTimer == 0)
             {
+				animate_attack();
                 Attack();
                 attackTimer = 50;
             }
@@ -162,6 +150,17 @@ public class MobControl : MonoBehaviour
             dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
             dir *= speed * Time.fixedDeltaTime;
             rg.MovePosition(rg.position + dir);
+			
+			if(Math.Abs(dir.x) > Math.Abs(dir.y))
+			{
+				if(dir.x > 0) anim.CrossFade("EnemyRunRight", 0);
+				else anim.CrossFade("EnemyRunLeft", 0);
+			} 
+			else 
+			{
+				if(dir.y > 0) anim.CrossFade("EnemyRunUp", 0);
+				else anim.CrossFade("EnemyRunDown", 0);
+			}
         }
 
         //Check if we are close enough to the next waypoint
@@ -237,4 +236,20 @@ public class MobControl : MonoBehaviour
         }
 
     }
+	
+	public void animate_attack()
+	{
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleLeft")){
+            anim.CrossFade("EnemyAttackLeft", 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleRight")){
+            anim.CrossFade("EnemyAttackRight", 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleUp")){
+			anim.CrossFade("EnemyAttackUp", 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleDown")){
+			anim.CrossFade("EnemyAttackDown", 0);
+        }
+	}
 }
