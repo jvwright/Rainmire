@@ -32,14 +32,15 @@ public class Control : MonoBehaviour
          * moving the character, I'm not sure how to achieve diagonal movement. 
          */
 
+		 
 		Vector2 dir;
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+		if (Input.GetKey(KeyCode.LeftArrow)) {
 			dir = Vector2.left;
-		} else if (Input.GetKey (KeyCode.RightArrow)) {
+		} else if (Input.GetKey(KeyCode.RightArrow)) {
 			dir = Vector2.right;
-		} else if (Input.GetKey (KeyCode.UpArrow)) {
+		} else if (Input.GetKey(KeyCode.UpArrow)) {
 			dir = Vector2.up;
-		} else if (Input.GetKey (KeyCode.DownArrow)) {
+		} else if (Input.GetKey(KeyCode.DownArrow)) {
 			dir = Vector2.down;
 		} else {
 			dir = Vector2.zero;
@@ -51,44 +52,65 @@ public class Control : MonoBehaviour
         /*
          * Reading input for attack and animating it. 
          */
-        if (Input.GetKey(KeyCode.Z))
-        {
+        if (Input.GetKey(KeyCode.Z)){
             // anim.GetCurrentAnimatorStateInfo(0).IsName("RunLeft")
-            if (Input.GetKey(KeyCode.LeftArrow) || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft"))
-            {
+            if (Input.GetKey(KeyCode.LeftArrow) 
+				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft")){
                 attackL.setEnabled(true);
                 anim.CrossFade("AttackLeft", 0);
             }
-            else if (Input.GetKey(KeyCode.RightArrow) || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight"))
-            {
+            else if (Input.GetKey(KeyCode.RightArrow) 
+				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight")){
                 attackR.setEnabled(true);
                 anim.CrossFade("AttackRight", 0);
             }
-            else if (Input.GetKey(KeyCode.UpArrow) || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward"))
-            {
+            else if (Input.GetKey(KeyCode.UpArrow) 
+				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward")){
                 attackU.setEnabled(true);
                 anim.CrossFade("AttackForward", 0);
             }
-            else if (Input.GetKey(KeyCode.DownArrow) || anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack"))
-            {
+            else if (Input.GetKey(KeyCode.DownArrow) 
+				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack")){
                 attackD.setEnabled(true);
                 anim.CrossFade("AttackBack", 0);
             }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
+		else if(Input.GetKey(KeyCode.X)){
+			if (Input.GetKey(KeyCode.LeftArrow) 
+				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft")){
+                anim.CrossFade("DashLeft", 0);
+				dir = 3 * Vector2.left * movementSpeed * Time.deltaTime;
+				rb.MovePosition(rb.position + dir);
+            }
+            else if (Input.GetKey(KeyCode.RightArrow) 
+				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight")){
+                anim.CrossFade("DashRight", 0);
+				dir = 3 * Vector2.right * movementSpeed * Time.deltaTime;
+				rb.MovePosition(rb.position + dir);
+            }
+            else if (Input.GetKey(KeyCode.UpArrow) 
+				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward")){
+                anim.CrossFade("DashForward", 0);
+				dir = 3 * Vector2.up * movementSpeed * Time.deltaTime;
+				rb.MovePosition(rb.position + dir);
+            }
+            else if (Input.GetKey(KeyCode.DownArrow) 
+				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack")){
+                anim.CrossFade("DashBack", 0);
+				dir = 3 * Vector2.down * movementSpeed * Time.deltaTime;
+				rb.MovePosition(rb.position + dir);
+            }
+		}
+        else if (Input.GetKey(KeyCode.LeftArrow)){
             anim.CrossFade("RunLeft", 0);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
+        else if (Input.GetKey(KeyCode.RightArrow)){
             anim.CrossFade("RunRight", 0);
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
-        {
+        else if (Input.GetKey(KeyCode.UpArrow)){
             anim.CrossFade("RunForward", 0);
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
+        else if (Input.GetKey(KeyCode.DownArrow)){
             anim.CrossFade("RunBack", 0);
         }
     }

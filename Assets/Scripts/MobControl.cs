@@ -2,6 +2,7 @@
 using System.Collections;
 using Pathfinding;
 using System.Collections.Generic;
+using System;
 
 public class MobControl : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MobControl : MonoBehaviour
     public GameObject Player;                               //The player objest
     private Seeker seeker;                                  //Used to find the best path
     public Path path;                                       //The current path being followed
+    private Animator anim;									// Animator for the enemy
     private Vector3 target;                                 //The list of points making up the unit's current path
     float nextWaypointDistance = .15f;                      //The max distance from the AI to a waypoint for it to continue to the next waypoint
     private int currentWaypoint = 0;                        //The waypoint we are currently moving towards
@@ -26,6 +28,7 @@ public class MobControl : MonoBehaviour
     float speed;                                            //Value that changes when buffed or debuffed
     public float health;                                    //The unit's current health
     public float minDist;                                   //If the player is less than minDist away the unit will stop moving closer
+    Vector2 dir;                                            // Movement variable
 
     // Combat variables
     PlayerHealth PH;                                        //Player health
@@ -51,6 +54,7 @@ public class MobControl : MonoBehaviour
         rg = this.gameObject.GetComponent<Rigidbody2D>();
         speed = baseSpeed;
         unitName = this.name;
+        anim = GetComponent<Animator>();
     }
 
     public void OnPathComplete(Path p)
@@ -89,7 +93,7 @@ public class MobControl : MonoBehaviour
         {
             attackTimer = 5;
             aggro = true;
-        }*/
+        }*/        
 
         //If the player is close enough set aggro to true
         if(Vector2.Distance(transform.position, Player.transform.position) < aggroRange&& !aggro)
@@ -112,6 +116,7 @@ public class MobControl : MonoBehaviour
         {
             if (attackTimer == 0)
             {
+				animate_attack();
                 Attack();
                 attackTimer = 50;
             }
@@ -142,9 +147,20 @@ public class MobControl : MonoBehaviour
         {
             //Debug.Log(unitname+" current waypoint "+currentWaypoint);
             //Move to the next waypoint
-            Vector2 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+            dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
             dir *= speed * Time.fixedDeltaTime;
             rg.MovePosition(rg.position + dir);
+			
+			if(Math.Abs(dir.x) > Math.Abs(dir.y))
+			{
+				if(dir.x > 0) anim.CrossFade("EnemyRunRight", 0);
+				else anim.CrossFade("EnemyRunLeft", 0);
+			} 
+			else 
+			{
+				if(dir.y > 0) anim.CrossFade("EnemyRunUp", 0);
+				else anim.CrossFade("EnemyRunDown", 0);
+			}
         }
 
         //Check if we are close enough to the next waypoint
@@ -220,4 +236,20 @@ public class MobControl : MonoBehaviour
         }
 
     }
+	
+	public void animate_attack()
+	{
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleLeft")){
+            anim.CrossFade("EnemyAttackLeft", 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleRight")){
+            anim.CrossFade("EnemyAttackRight", 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleUp")){
+			anim.CrossFade("EnemyAttackUp", 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleDown")){
+			anim.CrossFade("EnemyAttackDown", 0);
+        }
+	}
 }
