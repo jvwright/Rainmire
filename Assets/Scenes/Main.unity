@@ -211,7 +211,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2081357723
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a87e34c033021e648bedc49f186625b6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab13e301a5b5f39429a5871f1602b355, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -306,7 +306,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 15836366}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 1
   startDelay:
     scalar: 0
@@ -344,13 +344,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302376
   looping: 0
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -7701,7 +7700,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300008, guid: 55a9227362b13f44b88b7c355e4372c1,
+      objectReference: {fileID: 21300000, guid: 5a334902e934402419563e00c2e44ab2,
         type: 3}
     - target: {fileID: 61000013561839776, guid: 48a04263ba8ab3945863cf43d7627106,
         type: 2}
@@ -8004,7 +8003,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2081357723
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1ea5f90e238695841839fd69ffedc3a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8491916165fd24a4b99770b823b17941, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11154,7 +11153,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300024, guid: 55a9227362b13f44b88b7c355e4372c1,
+      objectReference: {fileID: 21300000, guid: 5a334902e934402419563e00c2e44ab2,
         type: 3}
     - target: {fileID: 61000013561839776, guid: 48a04263ba8ab3945863cf43d7627106,
         type: 2}
@@ -13258,7 +13257,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1466124018}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 1
   startDelay:
     scalar: 0
@@ -13296,13 +13295,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 1111302400
   looping: 0
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 0
   scalingMode: 1
-  randomSeed: 1111302400
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -17750,7 +17748,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2081357723
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a87e34c033021e648bedc49f186625b6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab13e301a5b5f39429a5871f1602b355, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -19080,7 +19078,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3d984c6f0a8e7234c8e714c29ee23658,
+      objectReference: {fileID: 21300000, guid: acbb1a554fd105d4bb2a49924556aa93,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 259c0eb037f0d074787968e532efd75d, type: 2}
@@ -19964,7 +19962,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2081357723
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1ea5f90e238695841839fd69ffedc3a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8491916165fd24a4b99770b823b17941, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
