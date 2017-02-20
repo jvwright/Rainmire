@@ -3,7 +3,7 @@ using System.Collections;
 
 
 
-public class ProjectileAttack : MonoBehaviour {
+public class RangedAttack : MonoBehaviour {
 
     public GameObject target;
     public GameObject projectile;
