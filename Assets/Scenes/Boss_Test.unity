@@ -714,6 +714,11 @@ Prefab:
         type: 2}
       propertyPath: image
       value: 
+      objectReference: {fileID: 172032997}
+    - target: {fileID: 114000011859010734, guid: 259c0eb037f0d074787968e532efd75d,
+        type: 2}
+      propertyPath: HP
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 259c0eb037f0d074787968e532efd75d, type: 2}
@@ -848,3 +853,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000010134021504, guid: 259c0eb037f0d074787968e532efd75d,
     type: 2}
   m_PrefabInternal: {fileID: 1390205808}
+--- !u!61 &2086118763
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2086118755}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.95, y: 1.07}
