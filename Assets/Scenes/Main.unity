@@ -166,7 +166,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 10.24, y: 10.24}
 --- !u!1 &8871517 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010751438018, guid: 48a04263ba8ab3945863cf43d7627106,
@@ -2009,7 +2009,6 @@ Transform:
   m_Children:
   - {fileID: 8665135}
   - {fileID: 814910477}
-  - {fileID: 315559254}
   - {fileID: 1769354260}
   - {fileID: 1976785056}
   - {fileID: 469393010}
@@ -2040,49 +2039,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!1 &315559253
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 315559254}
-  - 61: {fileID: 315559255}
-  m_Layer: 0
-  m_Name: boxcollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &315559254
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 315559253}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.28, y: -10.24, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 77634931}
-  m_RootOrder: 2
---- !u!61 &315559255
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 315559253}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 21.71, y: 1.2}
 --- !u!1 &460552175
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,12 +2062,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 460552175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.8, y: 30.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -20, y: 30, z: 0}
+  m_LocalScale: {x: 1.001, y: 1.001, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 77634931}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!212 &460552177
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2201,12 +2157,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 469393008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.8, y: -8.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -20, y: -11, z: 0}
+  m_LocalScale: {x: 1.001, y: 1.001, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 77634931}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1001 &790979154
 Prefab:
   m_ObjectHideFlags: 0
@@ -2621,7 +2577,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 10.24, y: 10.24}
 --- !u!1 &936288062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3082,7 +3038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   astarData:
-    dataString: UEsDBBQAAAgIAACYn+s2VDXEFwIAAAEEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtU9uO2jAQ/ZXKzxDFIQmEty0stNK2u1pa9dk4DrFw7MiXclnl3zt2wm1VP4B85szMmTnOB9o5XqL5B/pLhGNojopqmqUTMsnykiaTdDvGRY63NIvjSTGNU8xQN0LEtIzad2K5QnM8QtyohlnN6ZPcCagSj5CTvFK6eS53bKGMNWheEWHYCGllfZ70TY9oXgD3FDLO8Au1KZOW6SGKo2QWw0lwz4ridFZkOE8CfQz3wp/ptPMdqSBNy8oNP7MhP8HRNA+puIiwp84KoEpVsp7lG0BPJQQ3gyh7av0i3skJjVDJCUzm9YCCmvFdbaHqXcZrVRlmwwCanJZcw2JCIfRV2RoqNMTs7xac4aS7VPrxv1ClVfNtaIRjKGtrTveghhJjr1u8B5f3Gp08ELEnW8H+1Ez+VGutnASHrXaQ5gxLlpfLdYZFzej+gvbSHiDXDuvsvcqiIo/TPE1nz+N41hsXFf1Ju86PfFwI3mw9nt6uT0duwvIA2Ajlt+zdZxrc+A76w7MwoQtgXthvw36R3e3tDPCKa2MhEAYmzqoXLvdrzcsb84IuubEvvOFhmWC8H26rnAYmWsE/GESdXSgtmcf6eVsmibCnN2hmHy3+FLm2+4SvCLWq92OIDB/GIz2AV24cPwbe1GHwlEuoSsRbHwxCYHvyIleC/TCOX8CXtSatf3WlJoc1PzfqOhSXldpQzZh8DblBSvcPUEsDBBQAAAgAAACYn+sef112MgAAADIAAAASACQAZ3JhcGgwX2VkaXRvci5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BeyJsb2NrZWQiOnRydWUsInNob3dFeHRyYSI6ZmFsc2UsInBpdm90IjoiQ2VudGVyIn1QSwMEFAAACAgAAJif61C4vq12AAAAgwAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQEdjLEOgyAUAP/lzZaAgBZXB7fGvXFAeeobCgaxiWn675VuN9zdB94YdwoeGpDszkooYIl2W3doxIUHuYueYOZaK2mlrtxUSjXehKnEOGnOpam5EghDAenc8GFf+C96m9aZvCO/sC6S6/I1Wz44bMPhU9b48P0BUEsBAi0AFAAACAgAAJif6zZUNcQXAgAAAQQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAAAAJif6x5/XXYyAAAAMgAAABIAJAAAAAAAAAAAAAAAZAIAAGdyYXBoMF9lZGl0b3IuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+tQuL6tdgAAAIMAAAAJACQAAAAAAAAAAAAAAOoCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAMAAwAcAQAAqwMAAAAA
+    dataString: UEsDBBQAAAgIAACYn+ue/3c58QEAANkDAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtUtuO2jAQ/ZXKz+wqgcAuvG1hoZW2XbS06rNxJmSEY0e+lMuKf+/YCZeg5iGWz9zOmeNPtvGYs8kn+8ulBzZh4+JpmA34YDjKRX+QrR/S8Shdi2GSDMZPSZYCO/UYtzUI98EdajZJewytrsAZFC9qI6lL0mNeYaFN9ZpvYKqts2xScGmhx4x2oU6FoXs2GVPuIVYc6U+9BSgHpo3eB70Sklc15Cs8QpuTJk0WnZShdA5NsE+9tJRo22HuUAeBH/zAeixHTozDHKJfAm5K1614LwoLLs42/DBDQ4JjI/ZVu5I6VNxubxY3TPunc6cf/wsVRlff2kGRsitRbImN4NZdtnMLzm45erXjcsvXEv6UoH7qhdFekXPOeCrzFvqz8+WiYVqC2J7RhloH8nVnzcPH8SjJRln2/PqQPDc7fxw3X3Y6Bcn7qcRqHfDsen3Zo43LI2AlddhycBUMWfGd+Ee7bZxCWCD228Ivvrm+iRaeo7GOAlEw906/odouDObXzDM6Q+vesMK4THI9iFtrbyiTzekkg4R3U20UBKzRW4Pi0h2WNMx1Lb6LXMbd4XMunG78aCPtg++mR/CSmyTdwFLvWk9RUVcul00wEqHtqTNdRfaTnLCALwvD6/DqcsN3CzxW+iIKVaFXwgCo91gbqZz+AVBLAwQUAAAIAAAAmJ/rHn9ddjIAAAAyAAAAEgAkAGdyYXBoMF9lZGl0b3IuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAXsibG9ja2VkIjp0cnVlLCJzaG93RXh0cmEiOmZhbHNlLCJwaXZvdCI6IkNlbnRlciJ9UEsDBBQAAAgIAACYn+tQuL6tdgAAAIMAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BHYyxDoMgFAD/5c2WgIAWVwe3xr1xQHnqGwoGsYlp+u+Vbjfc3QfeGHcKHhqQ7M5KKGCJdlt3aMSFB7mLnmDmWitppa7cVEo13oSpxDhpzqWpuRIIQwHp3PBhX/gvepvWmbwjv7AukuvyNVs+OGzD4VPW+PD9AVBLAQItABQAAAgIAACYn+ue/3c58QEAANkDAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgAAACYn+sef112MgAAADIAAAASACQAAAAAAAAAAAAAAD4CAABncmFwaDBfZWRpdG9yLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rULi+rXYAAACDAAAACQAkAAAAAAAAAAAAAADEAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAADAAMAHAEAAIUDAAAAAA==
     upgradeData: 
     data_backup: 
     file_cachedStartup: {fileID: 0}
@@ -3156,7 +3112,7 @@ MonoBehaviour:
     seed: 0
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
-  showGraphs: 0
+  showGraphs: 1
   lastUniqueAreaIndex: 1
 --- !u!4 &1194375343
 Transform:
@@ -5162,12 +5118,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1569205058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.8, y: -8.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 21, y: -11, z: 0}
+  m_LocalScale: {x: 1.001, y: 1.001, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 77634931}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!212 &1569205060
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5224,12 +5180,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1573786016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.67, y: 30.97, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 21, y: 30, z: 0}
+  m_LocalScale: {x: 1.001, y: 1.001, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 77634931}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!212 &1573786018
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5292,7 +5248,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 77634931}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!61 &1769354261
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5306,7 +5262,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 10.24, y: 10.24}
 --- !u!212 &1769354262
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5554,7 +5510,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 77634931}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!61 &1976785057
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5568,7 +5524,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 10.24, y: 10.24}
 --- !u!212 &1976785058
 SpriteRenderer:
   m_ObjectHideFlags: 0
