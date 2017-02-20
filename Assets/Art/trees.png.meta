@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: c4ae4f5b6c47909409cbbdec6616d9cc
 timeCreated: 1487551934
 licenseType: Pro
@@ -8,6 +9,13 @@ TextureImporter:
     21300002: trees_1
     21300004: trees_2
     21300006: trees_3
+=======
+guid: 97699b54e9c169a4faa93bdc5aa17d28
+timeCreated: 1487552568
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName: {}
+>>>>>>> 35574d15ed14b460417a5a36343c12e5c0de532b
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -34,7 +42,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
+<<<<<<< HEAD
     aniso: 16
+=======
+    aniso: -1
+>>>>>>> 35574d15ed14b460417a5a36343c12e5c0de532b
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -42,7 +54,11 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
+<<<<<<< HEAD
   spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> 35574d15ed14b460417a5a36343c12e5c0de532b
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -55,6 +71,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD
     sprites:
     - serializedVersion: 2
       name: trees_0
@@ -108,6 +125,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
+=======
+    sprites: []
+>>>>>>> 35574d15ed14b460417a5a36343c12e5c0de532b
     outline: []
   spritePackingTag: 
   userData: 
