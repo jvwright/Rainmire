@@ -21,8 +21,8 @@ GameObject:
   - 4: {fileID: 4000012605631370}
   - 212: {fileID: 212000010892586766}
   - 50: {fileID: 50000010069286586}
-  - 114: {fileID: 114000013135554514}
   - 61: {fileID: 61000010567415934}
+  - 114: {fileID: 114000013564122294}
   m_Layer: 0
   m_Name: projectile
   m_TagString: Untagged
@@ -58,7 +58,7 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &61000010567415934
 BoxCollider2D:
@@ -74,7 +74,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.39, y: 0.35}
---- !u!114 &114000013135554514
+--- !u!114 &114000013564122294
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -82,9 +82,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011186133140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ec4a12322985d4690c1828675065c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 04c6d45aa200d5a43bd22e72d3d4a73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
 --- !u!212 &212000010892586766
 SpriteRenderer:
   m_ObjectHideFlags: 1
