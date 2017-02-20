@@ -1,9 +1,29 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d8c97dd019abb0448befbd115dc9cd73
 timeCreated: 1487551352
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
+=======
+<<<<<<< HEAD
+guid: c4ae4f5b6c47909409cbbdec6616d9cc
+timeCreated: 1487551934
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: trees_0
+    21300002: trees_1
+    21300004: trees_2
+    21300006: trees_3
+=======
+guid: 97699b54e9c169a4faa93bdc5aa17d28
+timeCreated: 1487552568
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName: {}
+>>>>>>> 35574d15ed14b460417a5a36343c12e5c0de532b
+>>>>>>> 274be6a689493fe551fb3c590de3a77229098b63
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +50,15 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
+<<<<<<< HEAD
     aniso: -1
+=======
+<<<<<<< HEAD
+    aniso: 16
+=======
+    aniso: -1
+>>>>>>> 35574d15ed14b460417a5a36343c12e5c0de532b
+>>>>>>> 274be6a689493fe551fb3c590de3a77229098b63
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +66,15 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
+<<<<<<< HEAD
   spriteMode: 1
+=======
+<<<<<<< HEAD
+  spriteMode: 2
+=======
+  spriteMode: 1
+>>>>>>> 35574d15ed14b460417a5a36343c12e5c0de532b
+>>>>>>> 274be6a689493fe551fb3c590de3a77229098b63
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +87,67 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD
     sprites: []
+=======
+<<<<<<< HEAD
+    sprites:
+    - serializedVersion: 2
+      name: trees_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 288
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: trees_1
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 0
+        width: 160
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: trees_2
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 192
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: trees_3
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 0
+        width: 288
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+=======
+    sprites: []
+>>>>>>> 35574d15ed14b460417a5a36343c12e5c0de532b
+>>>>>>> 274be6a689493fe551fb3c590de3a77229098b63
     outline: []
   spritePackingTag: 
   userData: 

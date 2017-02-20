@@ -4,7 +4,9 @@ using System.Collections;
 public class Projectile : MonoBehaviour {
 
     float timer = 60;
-
+    GameObject Player;
+    PlayerHealth health;
+    public float damage;
     // Use this for initialization
     void Start () {
 	
@@ -20,11 +22,20 @@ public class Projectile : MonoBehaviour {
 
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if(coll.gameObject.tag == "Player")
         {
-
+            print("Collision detected");
+            Player = coll.gameObject;
+            health = Player.GetComponent<PlayerHealth>();
+            health.Strike(20);
+            if (Player.GetComponent("PlayerHealth") != null )
+            {
+                health = Player.GetComponent<PlayerHealth>();
+                health.Strike(damage);
+                Destroy(this.gameObject);
+            }
         }
     }
 
