@@ -7,7 +7,8 @@ public class PlayerHealth : MonoBehaviour
     public float HP;
     GameObject player;
     public GameObject image;
-
+    public bool cantTouchThis = false;     //attempting to prevent character from taking so much projectile damage
+    float InvinciTimer = 5;
     // Use this for initialization
     void Start()
     {
@@ -18,18 +19,30 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         player = this.gameObject;
+        if (cantTouchThis)
+        {
+            InvinciTimer -= 1;
+        }
+        if(InvinciTimer <=0 && cantTouchThis)
+        {
+            cantTouchThis = false;
+            
+        }
     }
 
     //Use this to do damage to the character
     public void Strike(float damage)
     {
-        //Debug.Log("player hp" + HP);
-        HP = HP - damage;
-        if (HP <= 0)
+        if (!cantTouchThis)
         {
-			HP = 0;
-			player.gameObject.SetActive (false);
+            //Debug.Log("player hp" + HP);
+            HP = HP - damage;
+            if (HP <= 0)
+            {
+                HP = 0;
+                player.gameObject.SetActive(false);
+            }
+            GameObject.Find("GreenHealthBar").transform.GetComponent("HealthBar").SendMessage("decreaseHealth", HP);
         }
-		GameObject.Find("GreenHealthBar").transform.GetComponent("HealthBar").SendMessage("decreaseHealth", HP);
     }
 }

@@ -24,7 +24,7 @@ public class RangedAttack : MonoBehaviour {
             Vector3 pos = target.transform.position;
             Vector3 shoot = pos - worldPos;
             Attack(shoot);
-            timer = 25;
+            timer = 30;
         }
         else { timer -= 1; };
 	}

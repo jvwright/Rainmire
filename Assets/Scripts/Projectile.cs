@@ -3,28 +3,43 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
-    float timer = 60;
+    float timer;
+    float triggerTimer;
     GameObject Player;
     PlayerHealth health;
     public float damage;
+    bool triggered;  //stops multiple instances of OnTriggerEnter being called
     // Use this for initialization
     void Start () {
-	
-	}
+        timer = 60;
+        triggerTimer = 10;
+        triggered = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         timer -= 1;
+        triggerTimer -= 1;
         if (timer <= 0)
         {
             Destroy(this.gameObject);
+        }
+        if(triggerTimer <= 0 && triggered)
+        {
+            triggered = !triggered;
+            triggerTimer = 50;
         }
 
     }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.gameObject.tag == "Player")
+        if (triggered)
+        {
+            Destroy(this.gameObject);
+           
+        }
+        else if(coll.gameObject.tag == "Player")
         {
             print("Collision detected");
             Player = coll.gameObject;
@@ -34,6 +49,9 @@ public class Projectile : MonoBehaviour {
             {
                 health = Player.GetComponent<PlayerHealth>();
                 health.Strike(damage);
+                health.cantTouchThis = true;
+                triggered = true;
+                triggerTimer = 50;
                 Destroy(this.gameObject);
             }
         }
