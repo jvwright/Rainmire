@@ -37,7 +37,9 @@ public class Projectile : MonoBehaviour {
         if (triggered)
         {
             Destroy(this.gameObject);
-           
+            Destroy(this);
+            return; 
+
         }
         else if(coll.gameObject.tag == "Player")
         {
@@ -53,6 +55,7 @@ public class Projectile : MonoBehaviour {
                 triggered = true;
                 triggerTimer = 50;
                 Destroy(this.gameObject);
+                Destroy(this);
             }
         }
     }
