@@ -2955,7 +2955,7 @@ GameObject:
   - 82: {fileID: 1396429388}
   m_Layer: 0
   m_Name: PlayerSounds
-  m_TagString: sounds
+  m_TagString: playersounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
