@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e4bfa03ff3f484baeae2d3a758cb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1000010134021504, guid: 259c0eb037f0d074787968e532efd75d, type: 2}
+  Player: {fileID: 0}
   patrol:
   - {x: 10.24, y: 1.28, z: 0}
   - {x: 10.24, y: -8.96, z: 0}
@@ -144,6 +144,9 @@ MonoBehaviour:
   attackRange: 2
   strength: 1
   attackTimer: 20
+  playOnHurt: {fileID: 8300000, guid: a70258fca1b05ae4f83ecc28977b4212, type: 3}
+  playOnDeath: {fileID: 8300000, guid: e00ef84f44efcab438dee4e3af39718e, type: 3}
+  playOnAttack: {fileID: 8300000, guid: a70258fca1b05ae4f83ecc28977b4212, type: 3}
 --- !u!212 &212000012281812758
 SpriteRenderer:
   m_ObjectHideFlags: 1
