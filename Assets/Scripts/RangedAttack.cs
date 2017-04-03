@@ -23,8 +23,10 @@ public class RangedAttack : MonoBehaviour {
             Vector3 worldPos = (source.transform.position);
             Vector3 pos = target.transform.position;
             Vector3 shoot = pos - worldPos;
-            Attack(shoot);
-            timer = 30;
+			if (Vector3.Magnitude(shoot) < 10) {
+				Attack (shoot);
+				timer = 30;
+			}
         }
         else { timer -= 1; };
 	}
