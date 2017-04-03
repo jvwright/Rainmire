@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour {
     GameObject Player;
     PlayerHealth health;
     public float damage;
+    
     bool triggered;  //stops multiple instances of OnTriggerEnter being called
     // Use this for initialization
     void Start () {
@@ -46,7 +47,7 @@ public class Projectile : MonoBehaviour {
             print("Collision detected");
             Player = coll.gameObject;
             health = Player.GetComponent<PlayerHealth>();
-            health.Strike(20);
+            //health.Strike(20);
             if (Player.GetComponent("PlayerHealth") != null )
             {
                 health = Player.GetComponent<PlayerHealth>();
