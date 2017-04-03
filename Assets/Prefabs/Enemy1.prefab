@@ -137,6 +137,9 @@ MonoBehaviour:
   attackRange: 0
   strength: 0
   attackTimer: 0
+  playOnHurt: {fileID: 8300000, guid: ab3d39fd0cab89343b1b04ae38049c6d, type: 3}
+  playOnDeath: {fileID: 8300000, guid: e00ef84f44efcab438dee4e3af39718e, type: 3}
+  playOnAttack: {fileID: 8300000, guid: a70258fca1b05ae4f83ecc28977b4212, type: 3}
 --- !u!212 &212000013571716210
 SpriteRenderer:
   m_ObjectHideFlags: 1

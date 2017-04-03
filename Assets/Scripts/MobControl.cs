@@ -42,6 +42,12 @@ public class MobControl : MonoBehaviour
     //Other variables
     string unitName;                                        //Just for debugging with multiple units
 
+    //Sound
+    GameObject soundplayer;
+    SoundManager SM;
+    public AudioClip playOnHurt;
+    public AudioClip playOnDeath;
+    public AudioClip playOnAttack;
 
     // Use this for initialization
     void Start()
@@ -55,6 +61,8 @@ public class MobControl : MonoBehaviour
         speed = baseSpeed;
         unitName = this.name;
         anim = GetComponent<Animator>();
+        soundplayer = GameObject.FindGameObjectWithTag("enemysounds");
+        SM = soundplayer.GetComponent<SoundManager>();
     }
 
     public void OnPathComplete(Path p)
@@ -179,6 +187,8 @@ public class MobControl : MonoBehaviour
 		if (Player.GetComponent("PlayerHealth") != null && Player.active == true)
         {
             PH.Strike(strength);
+            SM.loadSound(playOnAttack);
+            SM.playSound();
         }
     }
     //Keeps track of the unit's health
@@ -191,9 +201,13 @@ public class MobControl : MonoBehaviour
         else
         {
             health = health - dmg;
+            SM.loadSound(playOnHurt);
+            SM.playSound();
             Debug.Log(unitName + health);
             if (health <= 0)
             {
+                SM.loadSound(playOnDeath);
+                SM.playSound();
                 Destroy(gameObject);
             }
             dmgTimer = dmgCD;
