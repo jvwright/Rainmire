@@ -41,7 +41,13 @@ public class MobControl : MonoBehaviour
 
     //Other variables
     string unitName;                                        //Just for debugging with multiple units
-    public bool animationsOff;                              //turns off animations
+
+    //Sound
+    GameObject soundplayer;
+    SoundManager SM;
+    public AudioClip playOnHurt;
+    public AudioClip playOnDeath;
+    public AudioClip playOnAttack;
 
     // Use this for initialization
     void Start()
@@ -55,6 +61,8 @@ public class MobControl : MonoBehaviour
         speed = baseSpeed;
         unitName = this.name;
         anim = GetComponent<Animator>();
+        soundplayer = GameObject.FindGameObjectWithTag("enemysounds");
+        SM = soundplayer.GetComponent<SoundManager>();
     }
 
     public void OnPathComplete(Path p)
@@ -150,19 +158,17 @@ public class MobControl : MonoBehaviour
             dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
             dir *= speed * Time.fixedDeltaTime;
             rg.MovePosition(rg.position + dir);
-            if (!animationsOff)
-            {
-                if (Math.Abs(dir.x) > Math.Abs(dir.y))
-                {
-                    if (dir.x > 0) anim.CrossFade("EnemyRunRight", 0);
-                    else anim.CrossFade("EnemyRunLeft", 0);
-                }
-                else
-                {
-                    if (dir.y > 0) anim.CrossFade("EnemyRunUp", 0);
-                    else anim.CrossFade("EnemyRunDown", 0);
-                }
-            }
+			
+			if(Math.Abs(dir.x) > Math.Abs(dir.y))
+			{
+				if(dir.x > 0) anim.CrossFade("EnemyRunRight", 0);
+				else anim.CrossFade("EnemyRunLeft", 0);
+			} 
+			else 
+			{
+				if(dir.y > 0) anim.CrossFade("EnemyRunUp", 0);
+				else anim.CrossFade("EnemyRunDown", 0);
+			}
         }
 
         //Check if we are close enough to the next waypoint
@@ -181,6 +187,8 @@ public class MobControl : MonoBehaviour
 		if (Player.GetComponent("PlayerHealth") != null && Player.active == true)
         {
             PH.Strike(strength);
+            SM.loadSound(playOnAttack);
+            SM.playSound();
         }
     }
     //Keeps track of the unit's health
@@ -193,9 +201,13 @@ public class MobControl : MonoBehaviour
         else
         {
             health = health - dmg;
+            SM.loadSound(playOnHurt);
+            SM.playSound();
             Debug.Log(unitName + health);
             if (health <= 0)
             {
+                SM.loadSound(playOnDeath);
+                SM.playSound();
                 Destroy(gameObject);
             }
             dmgTimer = dmgCD;
@@ -238,27 +250,20 @@ public class MobControl : MonoBehaviour
         }
 
     }
-
-    public void animate_attack()
-    {
-        if (!animationsOff)
-        {
-            if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleLeft"))
-            {
-                anim.CrossFade("EnemyAttackLeft", 0);
-            }
-            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleRight"))
-            {
-                anim.CrossFade("EnemyAttackRight", 0);
-            }
-            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleUp"))
-            {
-                anim.CrossFade("EnemyAttackUp", 0);
-            }
-            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleDown"))
-            {
-                anim.CrossFade("EnemyAttackDown", 0);
-            }
+	
+	public void animate_attack()
+	{
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleLeft")){
+            anim.CrossFade("EnemyAttackLeft", 0);
         }
-    }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleRight")){
+            anim.CrossFade("EnemyAttackRight", 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleUp")){
+			anim.CrossFade("EnemyAttackUp", 0);
+        }
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleDown")){
+			anim.CrossFade("EnemyAttackDown", 0);
+        }
+	}
 }
