@@ -2065,6 +2065,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: patrol.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4000014288099346, guid: a08432f30f7af8d4ab9729dc0ae06ec8, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.1
@@ -2137,6 +2142,36 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2005556010}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: patrol.Array.data[0].x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: patrol.Array.data[0].y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: patrol.Array.data[1].x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: patrol.Array.data[1].y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: patrol.Array.data[2].y
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: animationsOff
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a08432f30f7af8d4ab9729dc0ae06ec8, type: 2}
   m_IsPrefabParent: 0

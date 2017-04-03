@@ -41,6 +41,7 @@ public class MobControl : MonoBehaviour
 
     //Other variables
     string unitName;                                        //Just for debugging with multiple units
+    public bool animationsOff;                              //turns off animations
 
     //Sound
     GameObject soundplayer;
@@ -158,17 +159,19 @@ public class MobControl : MonoBehaviour
             dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
             dir *= speed * Time.fixedDeltaTime;
             rg.MovePosition(rg.position + dir);
-			
-			if(Math.Abs(dir.x) > Math.Abs(dir.y))
-			{
-				if(dir.x > 0) anim.CrossFade("EnemyRunRight", 0);
-				else anim.CrossFade("EnemyRunLeft", 0);
-			} 
-			else 
-			{
-				if(dir.y > 0) anim.CrossFade("EnemyRunUp", 0);
-				else anim.CrossFade("EnemyRunDown", 0);
-			}
+            if (!animationsOff)
+            {
+                if (Math.Abs(dir.x) > Math.Abs(dir.y))
+                {
+                    if (dir.x > 0) anim.CrossFade("EnemyRunRight", 0);
+                    else anim.CrossFade("EnemyRunLeft", 0);
+                }
+                else
+                {
+                    if (dir.y > 0) anim.CrossFade("EnemyRunUp", 0);
+                    else anim.CrossFade("EnemyRunDown", 0);
+                }
+            }
         }
 
         //Check if we are close enough to the next waypoint
@@ -253,17 +256,24 @@ public class MobControl : MonoBehaviour
 	
 	public void animate_attack()
 	{
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleLeft")){
-            anim.CrossFade("EnemyAttackLeft", 0);
-        }
-        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleRight")){
-            anim.CrossFade("EnemyAttackRight", 0);
-        }
-        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleUp")){
-			anim.CrossFade("EnemyAttackUp", 0);
-        }
-        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleDown")){
-			anim.CrossFade("EnemyAttackDown", 0);
+        if (!animationsOff)
+        {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleLeft"))
+            {
+                anim.CrossFade("EnemyAttackLeft", 0);
+            }
+            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleRight"))
+            {
+                anim.CrossFade("EnemyAttackRight", 0);
+            }
+            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleUp"))
+            {
+                anim.CrossFade("EnemyAttackUp", 0);
+            }
+            else if (anim.GetCurrentAnimatorStateInfo(0).IsName("EnemyIdleDown"))
+            {
+                anim.CrossFade("EnemyAttackDown", 0);
+            }
         }
 	}
 }
