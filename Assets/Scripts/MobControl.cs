@@ -49,6 +49,10 @@ public class MobControl : MonoBehaviour
     public AudioClip playOnHurt;
     public AudioClip playOnDeath;
     public AudioClip playOnAttack;
+    public AudioClip bossDeath;
+    SpriteRenderer sr;
+    bool isBoss;
+    public Sprite bossSprite;
 
     // Use this for initialization
     void Start()
@@ -62,6 +66,15 @@ public class MobControl : MonoBehaviour
         speed = baseSpeed;
         unitName = this.name;
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        if (bossSprite != null &&  sr.sprite == bossSprite)
+        {
+            isBoss = true;
+        }
+        else
+        {
+            isBoss = false;
+        }
         
         soundplayer = GameObject.FindGameObjectWithTag("enemysounds");
         SM = soundplayer.GetComponent<SoundManager>();
@@ -218,7 +231,12 @@ public class MobControl : MonoBehaviour
             Debug.Log(unitName + health);
             if (health <= 0)
             {
-                if(playOnDeath != null)
+                if( isBoss && bossDeath != null)
+                {
+                    SM.loadSound(bossDeath);
+                    SM.playSound();
+                }
+                else if(playOnDeath != null)
                 {
                     SM.loadSound(playOnDeath);
                     SM.playSound();

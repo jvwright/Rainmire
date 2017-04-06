@@ -2043,7 +2043,7 @@ Prefab:
         type: 2}
       propertyPath: playOnDeath
       value: 
-      objectReference: {fileID: 8300000, guid: a70258fca1b05ae4f83ecc28977b4212, type: 3}
+      objectReference: {fileID: 8300000, guid: b26f7ff5b4f1fe24a8665711e12bf0d6, type: 3}
     - target: {fileID: 114000011068997732, guid: c5d0275579363c24b91159495e948436,
         type: 2}
       propertyPath: playOnHurt
@@ -2053,7 +2053,7 @@ Prefab:
         type: 2}
       propertyPath: playOnAttack
       value: 
-      objectReference: {fileID: 8300000, guid: b26f7ff5b4f1fe24a8665711e12bf0d6, type: 3}
+      objectReference: {fileID: 8300000, guid: a70258fca1b05ae4f83ecc28977b4212, type: 3}
     m_RemovedComponents:
     - {fileID: 114000011326548716, guid: c5d0275579363c24b91159495e948436, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c5d0275579363c24b91159495e948436, type: 2}
@@ -2172,6 +2172,22 @@ Prefab:
       propertyPath: animationsOff
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: bossSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e7bba00217e4ab4c8b1ec59bc1aff64,
+        type: 3}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: playOnAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: a70258fca1b05ae4f83ecc28977b4212, type: 3}
+    - target: {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8,
+        type: 2}
+      propertyPath: bossDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: dd1f477d61b98fd4fb09a85b3ae95465, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a08432f30f7af8d4ab9729dc0ae06ec8, type: 2}
   m_IsPrefabParent: 0
@@ -5551,6 +5567,16 @@ Prefab:
       propertyPath: playOnDeath
       value: 
       objectReference: {fileID: 8300000, guid: 57875e30543113a41a12f15b47b2dafa, type: 3}
+    - target: {fileID: 114000013192803542, guid: 259c0eb037f0d074787968e532efd75d,
+        type: 2}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e202ce70d2ecfc47a1c640bb36a83c8, type: 3}
+    - target: {fileID: 114000013192803542, guid: 259c0eb037f0d074787968e532efd75d,
+        type: 2}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e202ce70d2ecfc47a1c640bb36a83c8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 259c0eb037f0d074787968e532efd75d, type: 2}
   m_IsPrefabParent: 0
@@ -5931,6 +5957,16 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 2005556010}
+    - target: {fileID: 114000013894264914, guid: 1cde1e3e27b871f4d9d028a4528f4df5,
+        type: 2}
+      propertyPath: playOnDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: b26f7ff5b4f1fe24a8665711e12bf0d6, type: 3}
+    - target: {fileID: 114000013894264914, guid: 1cde1e3e27b871f4d9d028a4528f4df5,
+        type: 2}
+      propertyPath: playOnHurt
+      value: 
+      objectReference: {fileID: 8300000, guid: e00ef84f44efcab438dee4e3af39718e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1cde1e3e27b871f4d9d028a4528f4df5, type: 2}
   m_IsPrefabParent: 0

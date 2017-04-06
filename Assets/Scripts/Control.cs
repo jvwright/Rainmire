@@ -13,12 +13,18 @@ public class Control : MonoBehaviour
     public PlayerAttack attackU;
     public PlayerAttack attackD;
 
+    GameObject soundplayer;
+    SoundManager SM;
+    public AudioClip attackSound;
 
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        soundplayer = GameObject.FindGameObjectWithTag("playersounds");
+        SM = soundplayer.GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -56,23 +62,35 @@ public class Control : MonoBehaviour
             // anim.GetCurrentAnimatorStateInfo(0).IsName("RunLeft")
             if (Input.GetKey(KeyCode.LeftArrow) 
 				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleLeft")){
+                SM.loadSound(attackSound);
+                SM.playSound();
                 attackL.setEnabled(true);
                 anim.CrossFade("AttackLeft", 0);
+               
             }
             else if (Input.GetKey(KeyCode.RightArrow) 
 				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleRight")){
+                SM.loadSound(attackSound);
+                SM.playSound();
                 attackR.setEnabled(true);
                 anim.CrossFade("AttackRight", 0);
+                
             }
             else if (Input.GetKey(KeyCode.UpArrow) 
 				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleForward")){
+                SM.loadSound(attackSound);
+                SM.playSound();
                 attackU.setEnabled(true);
                 anim.CrossFade("AttackForward", 0);
+                
             }
             else if (Input.GetKey(KeyCode.DownArrow) 
 				|| anim.GetCurrentAnimatorStateInfo(0).IsName("IdleBack")){
+                SM.loadSound(attackSound);
+                SM.playSound();
                 attackD.setEnabled(true);
                 anim.CrossFade("AttackBack", 0);
+                
             }
         }
 		else if(Input.GetKey(KeyCode.X)){
