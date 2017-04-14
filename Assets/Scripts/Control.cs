@@ -30,7 +30,7 @@ public class Control : MonoBehaviour
         soundplayer = GameObject.FindGameObjectWithTag("playersounds");
         SM = soundplayer.GetComponent<SoundManager>();
 
-        soundplayer2electricboogaloo = GameObject.FindGameObjectWithTag("playersounds");
+        soundplayer2electricboogaloo = GameObject.FindGameObjectWithTag("envsounds");
         EM = soundplayer2electricboogaloo.GetComponent<SoundManager>();
     }
 
@@ -127,15 +127,23 @@ public class Control : MonoBehaviour
             }
 		}
         else if (Input.GetKey(KeyCode.LeftArrow)){
+            EM.loadSound(stepSound);
+            EM.playSound();
             anim.CrossFade("RunLeft", 0);
         }
         else if (Input.GetKey(KeyCode.RightArrow)){
+            EM.loadSound(stepSound);
+            EM.playSound();
             anim.CrossFade("RunRight", 0);
         }
         else if (Input.GetKey(KeyCode.UpArrow)){
+            EM.loadSound(stepSound);
+            EM.playSound();
             anim.CrossFade("RunForward", 0);
         }
         else if (Input.GetKey(KeyCode.DownArrow)){
+            EM.loadSound(stepSound);
+            EM.playSound();
             anim.CrossFade("RunBack", 0);
         }
     }
