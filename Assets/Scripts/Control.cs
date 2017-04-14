@@ -17,6 +17,10 @@ public class Control : MonoBehaviour
     SoundManager SM;
     public AudioClip attackSound;
 
+    GameObject soundplayer2electricboogaloo;
+    SoundManager EM;
+    public AudioClip stepSound;
+
     // Use this for initialization
     void Start()
     {
@@ -25,6 +29,9 @@ public class Control : MonoBehaviour
 
         soundplayer = GameObject.FindGameObjectWithTag("playersounds");
         SM = soundplayer.GetComponent<SoundManager>();
+
+        soundplayer2electricboogaloo = GameObject.FindGameObjectWithTag("playersounds");
+        EM = soundplayer2electricboogaloo.GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
