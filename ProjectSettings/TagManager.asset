@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - playersounds
   - enemysounds
+  - boss
+  - envsounds
   layers:
   - Default
   - TransparentFX
