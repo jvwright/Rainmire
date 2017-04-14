@@ -50,9 +50,11 @@ public class MobControl : MonoBehaviour
     public AudioClip playOnDeath;
     public AudioClip playOnAttack;
     public AudioClip bossDeath;
+    
     SpriteRenderer sr;
     bool isBoss;
     public Sprite bossSprite;
+    
 
     // Use this for initialization
     void Start()
@@ -67,7 +69,7 @@ public class MobControl : MonoBehaviour
         unitName = this.name;
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        if (bossSprite != null &&  sr.sprite == bossSprite)
+        if (this.gameObject.tag == "boss")
         {
             isBoss = true;
         }
@@ -78,6 +80,8 @@ public class MobControl : MonoBehaviour
         
         soundplayer = GameObject.FindGameObjectWithTag("enemysounds");
         SM = soundplayer.GetComponent<SoundManager>();
+
+       
     }
 
     public void OnPathComplete(Path p)

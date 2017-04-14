@@ -50,6 +50,7 @@ public class BossMobControl : MonoBehaviour
     public AudioClip playOnDeath;
     public AudioClip playOnAttack;
     public AudioClip bossDeath;
+    public AudioClip bossWake;
     SpriteRenderer sr;
     bool isBoss;
     public Sprite bossSprite;
@@ -67,7 +68,7 @@ public class BossMobControl : MonoBehaviour
         unitName = this.name;
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        if (bossSprite != null &&  sr.sprite == bossSprite)
+        if (this.gameObject.tag == "boss")
         {
             isBoss = true;
         }
@@ -78,6 +79,11 @@ public class BossMobControl : MonoBehaviour
         
         soundplayer = GameObject.FindGameObjectWithTag("enemysounds");
         SM = soundplayer.GetComponent<SoundManager>();
+        if (isBoss)
+        {
+            SM.loadSound(bossWake);
+            SM.playSound();
+        }
     }
 
     public void OnPathComplete(Path p)
