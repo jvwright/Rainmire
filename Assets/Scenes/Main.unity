@@ -2240,6 +2240,10 @@ Prefab:
       propertyPath: m_Size.y
       value: 9.095081
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011211240278, guid: a08432f30f7af8d4ab9729dc0ae06ec8, type: 2}
+      propertyPath: m_TagString
+      value: boss
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000012816716096, guid: a08432f30f7af8d4ab9729dc0ae06ec8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a08432f30f7af8d4ab9729dc0ae06ec8, type: 2}
@@ -5386,7 +5390,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.861
   m_Pitch: 1
   Loop: 0
   Mute: 0
