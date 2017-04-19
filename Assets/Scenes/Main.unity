@@ -2742,11 +2742,11 @@ MonoBehaviour:
   attackTimer: 0
   animationsOff: 0
   playOnHurt: {fileID: 8300000, guid: 2219cd69819b8324994dad7bbed1489e, type: 3}
-<<<<<<< HEAD
+
   playOnDeath: {fileID: 8300000, guid: de13bd6204295eb49b19e3f3df93073d, type: 3}
-=======
+
   playOnDeath: {fileID: 8300000, guid: 15edf280e09d5e643b867c6bb5d4117f, type: 3}
->>>>>>> origin/master
+
   playOnAttack: {fileID: 8300000, guid: 2219cd69819b8324994dad7bbed1489e, type: 3}
   bossDeath: {fileID: 8300000, guid: de13bd6204295eb49b19e3f3df93073d, type: 3}
   bossWake: {fileID: 8300000, guid: 15edf280e09d5e643b867c6bb5d4117f, type: 3}
