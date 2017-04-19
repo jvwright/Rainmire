@@ -2742,7 +2742,11 @@ MonoBehaviour:
   attackTimer: 0
   animationsOff: 0
   playOnHurt: {fileID: 8300000, guid: 2219cd69819b8324994dad7bbed1489e, type: 3}
+<<<<<<< HEAD
   playOnDeath: {fileID: 8300000, guid: de13bd6204295eb49b19e3f3df93073d, type: 3}
+=======
+  playOnDeath: {fileID: 8300000, guid: 15edf280e09d5e643b867c6bb5d4117f, type: 3}
+>>>>>>> origin/master
   playOnAttack: {fileID: 8300000, guid: 2219cd69819b8324994dad7bbed1489e, type: 3}
   bossDeath: {fileID: 8300000, guid: de13bd6204295eb49b19e3f3df93073d, type: 3}
   bossWake: {fileID: 8300000, guid: 15edf280e09d5e643b867c6bb5d4117f, type: 3}
@@ -5390,7 +5394,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.861
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -9881,7 +9885,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5e705f1bc08d9134c8183d15a6afe9da, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 259bc6cde443b7243a556780e64e55b9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.102
   m_Pitch: 1
